@@ -1,8 +1,8 @@
 ---
 title: "Red de protección química de cereales invierno"
-format: docx
+format: html
 ---
-- Coordinación gral: Segundo Fernandez Paez
+- Coordinación general: Segundo Fernández Páez
 - Coordinación técnica: Juan Edwards
 
 ```{r setup, include=FALSE}
@@ -13,7 +13,7 @@ pacman::p_load(tidyverse,
 conflicted::conflict_prefer("filter", "dplyr")
 conflicted::conflict_prefer("select", "dplyr")
 load("data/raw.rds")
-theme_set(theme_gray(base_size = 12)) 
+theme_set(theme_gray(base_size = 15)) 
 
 # dat %>% distinct(prod) %>% pull()
 ```
@@ -35,9 +35,7 @@ save(dat, file="data/raw.rds")
 
 ## Curasemillas
 
-```{r}
-#| fig-height: 10
-#| fig-width: 10
+```{r, fig.height = 10, fig.width = 10}
 dat %>% 
   filter(protec == "semilla") %>% 
   filter(prod != "Sistiva_premis_2x" ) %>% 
