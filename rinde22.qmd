@@ -1,0 +1,112 @@
+---
+title: "Red de protección química de cereales invierno"
+format: docx
+---
+- Coordinación gral: Segundo Fernandez Paez
+- Coordinación técnica: Juan Edwards
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F, warning = FALSE, message = FALSE)
+pacman::p_load(tidyverse,
+               huxtable
+               )
+conflicted::conflict_prefer("filter", "dplyr")
+conflicted::conflict_prefer("select", "dplyr")
+load("data/raw.rds")
+theme_set(theme_gray(base_size = 12)) 
+
+# dat %>% distinct(prod) %>% pull()
+```
+
+```{r, eval=FALSE}
+library(googlesheets4)
+gs4_deauth()
+"https://docs.google.com/spreadsheets/d/1Wcxxw3hzcAwpFGZS5qf1H_8utLa0UnMIG6-sztdsYug/edit?usp=sharing" %>%
+  gs4_get() -> google_file
+```
+
+```{r, eval=FALSE}
+raw_rinde <- google_file %>% read_sheet(sheet = "cosecha", range = "A:I")
+trt_list <- google_file %>% read_sheet(sheet = "trt_list", range = "A:F")
+dat <- left_join(raw_rinde, trt_list) %>% 
+  mutate(estrategia = replace_na(estrategia, "simple"))
+save(dat, file="data/raw.rds")
+```
+
+## Curasemillas
+
+```{r}
+#| fig-height: 10
+#| fig-width: 10
+dat %>% 
+  filter(protec == "semilla") %>% 
+  filter(prod != "Sistiva_premis_2x" ) %>% 
+  filter(!(sitio == "MDP" & trt ==10 & cultivo =="cebada")) %>% 
+  ggplot() + 
+  aes(y=prod, x=kg_ha) + 
+  facet_grid(cultivo ~ sitio, scales = "free") + 
+  geom_point(alpha=.2) +
+  # geom_text(aes(label=trt), size=3)+
+  stat_summary(fun=mean, col="red") + 
+  stat_summary(aes(label=round(..x..)), fun=mean, geom="text", size=3, vjust=-.5) + 
+  scale_x_continuous(breaks = scales::pretty_breaks(5), 
+                     guide=guide_axis(n.dodge=2)) +
+  labs(y="", x ="kg/ha", title = "")
+```
+
+```{r }
+# dat %>% 
+#   filter(protec == "semilla") %>% 
+#   filter(str_detect(prod, "Sistiva|Check|Curacyt") ) %>% 
+#   # filter(!(sitio == "MDP" & trt ==10 & cultivo =="cebada")) %>% 
+#   ggplot() + 
+#   aes(y=prod, x=kg_ha) + 
+#   stat_summary(fun=mean, col="red") + 
+#   # geom_point(alpha=.2) + 
+#   geom_text(aes(label=trt), size=3)+
+#   facet_grid(cultivo ~ sitio, scales = "free") + 
+#   scale_x_continuous(breaks = scales::pretty_breaks(5), 
+#                      guide=guide_axis(n.dodge=2)) +
+#   labs(y="", x ="kg/ha", title = "Curasemillas")
+```
+
+## Foliares
+
+```{r, fig.height = 6, fig.width = 10}
+dat %>% 
+  filter(cultivo == "cebada") %>%
+  filter(protec == "foliar") %>% 
+  filter(!(prod == "Orquesta 1200 @Z39" & trt ==9)) %>% 
+  mutate(prod = fct_relevel(prod, "Check")) %>% 
+  ggplot() + 
+  aes(y=prod, x=kg_ha) + 
+  facet_grid(. ~ sitio, scales = "free") + 
+  # geom_text(aes(label=trt), size=3)+
+  geom_point(alpha=.2) +
+  stat_summary(fun=mean, col="red") + 
+  stat_summary(aes(label=round(..x..)), fun=mean, geom="text", size=3, vjust=-.5) + 
+  scale_x_continuous(breaks = scales::pretty_breaks(4), 
+                     guide=guide_axis(n.dodge=2)) +
+  labs(y="", x ="kg/ha", title = "Foliares - Cebada")
+```
+
+```{r, fig.height = 8, fig.width = 10}
+dat %>% 
+  filter(cultivo == "trigo") %>%
+  filter(protec == "foliar") %>% 
+  filter(!(prod == "Orquesta 1200 @Z39" & trt ==9)) %>% 
+  filter(!(sitio == "MDP"& trt==5	& bq ==3)) %>% 
+  mutate(prod = fct_relevel(prod, "Check")) %>% 
+  ggplot() + 
+  aes(y=prod, 
+      # col=factor(bq),  
+      x=kg_ha) + 
+  facet_grid(sitio~., scales = "free") + 
+  # geom_text(aes(label=trt), size=3)+
+  geom_point(alpha=.2) +
+  stat_summary(fun=mean, col="red") + 
+  stat_summary(aes(label=round(..x..)), fun=mean, geom="text", size=3, vjust=-.5) + 
+  scale_x_continuous(breaks = scales::pretty_breaks(5), 
+                     guide=guide_axis(n.dodge=2)) +  
+  labs(y="", x="kg/ha", title = "Foliares - Trigo")
+```
