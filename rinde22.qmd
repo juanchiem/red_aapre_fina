@@ -13,9 +13,9 @@ pacman::p_load(tidyverse,
 conflicted::conflict_prefer("filter", "dplyr")
 conflicted::conflict_prefer("select", "dplyr")
 load("data/raw.rds")
-theme_set(theme_gray(base_size = 12)) 
+theme_set(theme_gray(base_size = 15)) 
 
-# dat %>% distinct(prod) %>% pull()
+dat %>% distinct(prod) %>% pull() %>% sort()
 ```
 
 ```{r, eval=FALSE}
@@ -77,12 +77,13 @@ dat %>%
   filter(cultivo == "cebada") %>%
   filter(protec == "foliar") %>% 
   filter(!(prod == "Orquesta 1200 @Z39" & trt ==9)) %>% 
+  filter(!(sitio == "Tandil" & trt ==7 & (kg_ha<3000|kg_ha>5500))) %>% 
   mutate(prod = fct_relevel(prod, "Check")) %>% 
   ggplot() + 
   aes(y=prod, x=kg_ha) + 
   facet_grid(. ~ sitio, scales = "free") + 
-  # geom_text(aes(label=trt), size=3)+
-  geom_point(alpha=.2) +
+  geom_text(aes(label=trt), size=3)+
+  # geom_point(alpha=.2) +
   stat_summary(fun=mean, col="red") + 
   stat_summary(aes(label=round(..x..)), fun=mean, geom="text", size=3, vjust=-.5) + 
   scale_x_continuous(breaks = scales::pretty_breaks(4), 
@@ -110,3 +111,27 @@ dat %>%
                      guide=guide_axis(n.dodge=2)) +  
   labs(y="", x="kg/ha", title = "Foliares - Trigo")
 ```
+
+## Ajuste de modelos
+
+```{r}
+library(lme4)
+library(performance)
+```
+
+### Cebada
+
+```{r}
+dat %>% 
+  filter(cultivo == "trigo") %>%
+  filter(protec == "foliar") %>%
+  filter(!(sitio == "Tandil" & trt ==7 & (kg_ha<3000|kg_ha>5500))) %>% 
+  mutate(prod = fct_relevel(prod, "Check")) %>% 
+  filter(!(prod == "Cripton 600 @Z39")) -> cebada_foliar
+
+cf1 <- lmer(kg_ha ~ prod + (1|sitio/bq) , data=cebada_foliar)
+plot(cf1)
+check_heteroscedasticity(cf1)
+check_normality(cf1)
+```
+
