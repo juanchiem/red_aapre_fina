@@ -1,0 +1,51 @@
+regional,cultivo,crop_trat,trat_id,trat,trat_compact
+jmf,cebada,C10,10,Check,CHECK
+jmf,trigo,T9,9,Check,CHECK
+jmf,trigo,T10,10,Check,CHECK
+tandilia,cebada,C9,9,Check,CHECK
+tandilia,trigo,T9,9,Check,CHECK
+jmf,cebada,C7,7,Curacyt,CURACYT
+jmf,trigo,T7,7,Curacyt,CURACYT
+tandilia,cebada,C7,7,Curacyt,CURACYT
+tandilia,trigo,T7,7,Curacyt,CURACYT
+jmf,trigo,T4,4,Rancona_trio_300,RANCO
+necochea,trigo,T4,4,Rancona_trio_300,RANCO
+tandilia,trigo,T4,4,Rancona_trio_300,RANCO
+jmf,cebada,C4,4,Rancona_trio_400,RANCO
+necochea,cebada,C4,4,Rancona_trio_400,RANCO
+tandilia,cebada,C4,4,Rancona_trio_400,RANCO
+jmf,trigo,T5,5,Rizoderma,RIZO
+necochea,trigo,T5,5,Rizoderma,RIZO
+tandilia,trigo,T5,5,Rizoderma,RIZO
+jmf,trigo,T6,6,Rizoderma  + vitagrow + STZn,RIZO+VTG+STZN
+necochea,trigo,T6,6,Rizoderma  + vitagrow + STZn,RIZO+VTG+STZN
+tandilia,trigo,T6,6,Rizoderma  + vitagrow + STZn,RIZO+VTG+STZN
+jmf,cebada,C5,5,Rizoderma_SX,RIZO_SX
+necochea,cebada,C5,5,Rizoderma_SX,RIZO_SX
+tandilia,cebada,C5,5,Rizoderma_SX,RIZO_SX
+necochea,cebada,C6,6,Rizoderma_SX + vitagrow + STZn,RSX+VTG+STZN
+tandilia,cebada,C6,6,Rizoderma_SX + vitagrow + STZn,RSX+VTG+STZN
+jmf,cebada,C6,6,Rizoderma_SX + vitagrow + STZn,RSX+VTG+STZN
+jmf,cebada,C3,3,Sistiva_premis,SIST
+jmf,trigo,T3,3,Sistiva_premis,SIST
+necochea,cebada,C3,3,Sistiva_premis,SIST
+necochea,trigo,T3,3,Sistiva_premis,SIST
+tandilia,cebada,C3,3,Sistiva_premis,SIST
+tandilia,trigo,T3,3,Sistiva_premis,SIST
+jmf,cebada,C9,9,Sistiva_premis + Alltec_Zn,SIST+Zn
+tandilia,trigo,T8,8,Sistiva_premis + Alltec_Zn,SIST+Zn
+jmf,cebada,C1,1,Sistiva_premis + ALZ_12051,SIST+ALZ
+jmf,trigo,T1,1,Sistiva_premis + ALZ_12051,SIST+ALZ
+necochea,cebada,C1,1,Sistiva_premis + ALZ_12051,SIST+ALZ
+necochea,trigo,T1,1,Sistiva_premis + ALZ_12051,SIST+ALZ
+tandilia,cebada,C1,1,Sistiva_premis + ALZ_12051,SIST+ALZ
+tandilia,trigo,T1,1,Sistiva_premis + ALZ_12051,SIST+ALZ
+jmf,cebada,C8,8,Sistiva_premis_2x,SIST2X
+jmf,trigo,T8,8,Sistiva_premis_2x,SIST2X
+tandilia,cebada,C8,8,Sistiva_premis_2x,SIST2X
+jmf,cebada,C2,2,Vibrance integral,VIBR
+jmf,trigo,T2,2,Vibrance integral,VIBR
+necochea,cebada,C2,2,Vibrance integral,VIBR
+necochea,trigo,T2,2,Vibrance integral,VIBR
+tandilia,cebada,C2,2,Vibrance integral,VIBR
+tandilia,trigo,T2,2,Vibrance integral,VIBR
