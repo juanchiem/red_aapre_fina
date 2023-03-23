@@ -31,15 +31,16 @@ meta_cura <-  read.csv("data/meta_cura.csv")
 ## trat
 
 ```{r}
-# trat_cura <- gsheet2tbl("https://docs.google.com/spreadsheets/d/165Mu7j6k2QVZN4NPJvy42-WCj8WyH4C-flKlEF-NB4Y/edit#gid=1796511474")
-# trat_cura %>% rio::export("data/trat_cura.csv")
+trat_cura <- gsheet2tbl("https://docs.google.com/spreadsheets/d/165Mu7j6k2QVZN4NPJvy42-WCj8WyH4C-flKlEF-NB4Y/edit#gid=1796511474")
+trat_cura %>% rio::export("data/trat_cura.csv")
 trat_cura <- read.csv("data/trat_cura.csv")%>% 
     mutate(trat_id = stringr::str_to_upper(trat)) 
 ```
 
 ## plots
 ```{r}
-plots_cura <- gsheet2tbl("https://docs.google.com/spreadsheets/d/165Mu7j6k2QVZN4NPJvy42-WCj8WyH4C-flKlEF-NB4Y/edit#gid=1847280538")
+plots_cura <- gsheet2tbl("https://docs.google.com/spreadsheets/d/165Mu7j6k2QVZN4NPJvy42-WCj8WyH4C-flKlEF-NB4Y/edit#gid=1847280538") 
+  
 # write.table(plots_cura, "data/plots_cura.csv",
 #             na = "", row.names = FALSE, col.names = FALSE, append = TRUE, sep = ",")
 # plots_cura <- read.csv("data/plots_cura.csv")
@@ -83,7 +84,7 @@ cober_raw %>% str
 #       mutate(crop = fct_rev(factor(crop)),
 #              coords = paste(x, y, sep=","),
 #              x = as.numeric(x))  %>%
-#       left_join(trat_cura %>% select(regional, crop_trat, trat_id)) %>%
+#       left_join(trat_cura %>% select(sitio, crop_trat, trat_id)) %>%
 # rio::export("data/cober_dat.csv")
 ```
 
@@ -93,22 +94,30 @@ cober_dat <- read.csv("data/cober_dat.csv")
 
 ```{r}
 cober_dat %>% 
-  mutate(regional = stringr::str_to_upper(regional)) %>% 
+  filter(!trat_id=="SISTIVA_PREMIS_2X") %>% 
+  mutate(sitio = stringr::str_to_upper(sitio)) %>% 
   mutate(crop = if_else(crop=="C", "Cebada", "Trigo")) %>% 
   ggplot()+
   aes(x=trat_id, y= val)+
-  facet_grid(regional~crop, scales="free")+
-  stat_summary(fun = "mean", geom = "crossbar", col="green", alpha=.1)+
-  stat_summary(aes(label=round(..y..)), fun=mean, geom="text") +
-  geom_point(alpha=.4)+
-  labs(y="%", x="", col = "Tablón") + 
+  facet_grid(crop ~ sitio, scales = "free") + 
+  geom_point(alpha=.2) +
+  # geom_text(aes(label=trt), size=3)+
+  stat_summary(fun=mean, col="red") + 
+  stat_summary(fun=mean, aes(label=round(after_stat(y))), geom="text", size=3, vjust=-.5) + 
+  labs(y="Cobertura en macollaje  (%)", x="") + 
   theme_bw()+
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) + 
   coord_flip()
 ```
 
 ```{r}
-ftable(xtabs(~ crop + trat_id + regional, cober_dat))
+last_plot() %>% 
+  ggsave(filename = "plots/cobertura.jpg", w=8, h=6, units="cm", scale=3)
+```
+
+
+```{r}
+ftable(xtabs(~ crop + trat_id + sitio, cober_dat))
 asin_tran <- make.tran("asin.sqrt", 100)
 ```
 
@@ -116,10 +125,10 @@ asin_tran <- make.tran("asin.sqrt", 100)
 
 ```{r}
 cober_dat %>% 
-  distinct(regional, crop, trat_id) %>% 
-  filter(regional=="necochea") %>% 
+  distinct(sitio, crop, trat_id) %>% 
+  filter(sitio=="La Dulce") %>% 
   filter(crop=="T") %>%
-  select(-regional) %>% 
+  select(-sitio) %>% 
   left_join(cober_dat) -> cober_T6
 ```
 
@@ -139,7 +148,7 @@ cober_dat %>%
 
 ```{r}
 lmer_T6  <- with(asin_tran, 
-                lmer(linkfun(val) ~ trat_id + (1|regional), 
+                lmer(linkfun(val) ~ trat_id + (1|sitio), 
                      data = cober_T6))
 plot(lmer_T6)
 car::Anova(lmer_T6)
@@ -149,10 +158,10 @@ emmeans(lmer_T6, ~ trat_id, type = "response") %>%
 
 ```{r}
 cober_T6 %>% 
-  mutate(regional = stringr::str_to_upper(regional)) %>% 
+  mutate(regional = stringr::str_to_upper(sitio)) %>% 
   ggplot() + 
   aes(x=trat_id, y= val)+
-  facet_grid(.~regional)+
+  facet_grid(.~sitio)+
   stat_summary(fun = "mean", geom = "crossbar", col="green", alpha=.1)+
   stat_summary(aes(label=round(..y..)), fun=mean, geom="text") +
   geom_point(alpha=.4, shape=1)+
@@ -165,11 +174,11 @@ cober_T6 %>%
 
 ```{r}
 cober_dat %>% 
-  distinct(regional, crop, trat_id) %>% 
-  filter(regional!="necochea") %>% 
+  distinct(sitio, crop, trat_id) %>% 
+  filter(sitio!="La Dulce") %>% 
   filter(crop=="T") %>%
-  select(-regional) %>% 
-  left_join(cober_dat) -> cober_T2
+  select(-sitio) %>% 
+  left_join(cober_dat, multiple = "all") -> cober_T2
 ```
 
 ```{r}
@@ -188,7 +197,7 @@ cober_dat %>%
 
 ```{r}
 lmer_T2  <- with(asin_tran, 
-                lmer(linkfun(val) ~ trat_id + (1|regional), 
+                lmer(linkfun(val) ~ trat_id + (1|sitio), 
                      data = cober_T2))
 plot(lmer_T2)
 car::Anova(lmer_T2)

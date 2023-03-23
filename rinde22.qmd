@@ -15,7 +15,7 @@ conflicted::conflict_prefer("filter", "dplyr")
 conflicted::conflict_prefer("select", "dplyr")
 load("data/raw.rds")
 theme_set(theme_gray(base_size = 12)) 
-theme_set(theme_linedraw(base_size = 12)) 
+# theme_set(theme_linedraw(base_size = 12)) 
 
 dat %>% distinct(prod) %>% pull() %>% sort()
 ```
@@ -33,12 +33,17 @@ trt_list <- google_file %>% read_sheet(sheet = "trt_list", range = "A:F")
 dat <- left_join(raw_rinde, trt_list) %>% 
   mutate(estrategia = replace_na(estrategia, "simple"))
 save(dat, file="data/raw.rds")
+load(file="data/raw.rds")
 ```
 
 ## Curasemillas
 
 ```{r}
-dat %>% 
+dat %>%   
+  mutate(sitio = stringr::str_to_upper(sitio)) %>% 
+  mutate(prod = stringr::str_to_upper(prod)) %>%
+  filter(!prod=="SISTIVA_PREMIS_2X") %>% 
+  mutate(cultivo = stringr::str_to_sentence(cultivo)) %>% 
   filter(protec == "semilla") %>% 
   filter(prod != "Sistiva_premis_2x" ) %>% 
   filter(!(sitio == "MDP" & trt ==10 & cultivo =="cebada")) %>% 
@@ -49,10 +54,16 @@ dat %>%
   # geom_text(aes(label=trt), size=3)+
   stat_summary(fun=mean, col="red") + 
   stat_summary(aes(label=round(..x..)), fun=mean, geom="text", size=3, vjust=-.5) + 
-  scale_x_continuous(breaks = scales::pretty_breaks(5), 
-                     guide=guide_axis(n.dodge=2)) +
-  labs(y="", x ="kg/ha", title = "")
+  scale_x_continuous(breaks = scales::pretty_breaks(5)) +
+  labs(y="", x ="Rendimiento (kg/ha)", title = "") + 
+  theme_bw()
 ```
+
+```{r}
+last_plot() %>% 
+  ggsave(filename = "plots/rinde.jpg", w=8, h=6, units="cm", scale=3)
+```
+
 
 ## Foliares
 
