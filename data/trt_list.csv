@@ -1,0 +1,93 @@
+sitio,cultivo,protec,trt,prod
+MDP,trigo,foliar,6,Allegro_1000 @Z32 / Orquesta_1200 @Z39
+MDP,trigo,foliar,8,Allegro_1000 @Z32 / Orquesta_1200 @Z39 / Starter_3000 @Z24
+Tandil,trigo,foliar,8,Allegro_1000 @Z32 / Orquesta_1200 @Z39 / Starter_3000 @Z24
+MDP,trigo,foliar,7,Artea_500 @Z32 / Miravis_200 + Elatus_500 @Z39
+La Dulce,cebada,foliar,1,Check
+MDP,cebada,foliar,1,Check
+Tandil,cebada,foliar,7,Check
+MDP,cebada,semilla,9,Check
+MDP,cebada,semilla,10,Check
+Tandil,cebada,semilla,7,Check
+MDP,trigo,foliar,1,Check
+Tandil,trigo,foliar,9,Check
+MDP,trigo,semilla,10,Check
+Tandil,trigo,semilla,7,Check
+La Dulce,cebada,foliar,4,Coverfull_Ace_500 @Z39
+MDP,cebada,foliar,4,Coverfull_Ace_500 @Z39
+Tandil,cebada,foliar,3,Coverfull_Ace_500 @Z39
+Tandil,trigo,foliar,3,Coverfull_Ace_500 @Z39
+MDP,trigo,foliar,3,Cripton_600 @Z32 / Cripton_Xpro_600 @Z39
+La Dulce,cebada,foliar,8,Cripton_600 @Z39
+MDP,cebada,foliar,3,Cripton_600 @Z39
+La Dulce,cebada,foliar,3,Cripton_Xpro_600 @Z39
+MDP,cebada,foliar,8,Cripton_Xpro_600 @Z39
+Tandil,cebada,foliar,2,Cripton_Xpro_600 @Z39
+Tandil,trigo,foliar,2,Cripton_Xpro_600 @Z39
+MDP,cebada,semilla,7,Curacyt
+Tandil,cebada,semilla,9,Curacyt
+MDP,trigo,semilla,7,Curacyt
+Tandil,trigo,semilla,9,Curacyt
+MDP,trigo,foliar,4,Custodia_T_800 @Z32 / Coverfull_Ace_500 @Z39
+Tandil,trigo,foliar,7,Excalia_Max_700 @Z39
+MDP,trigo,foliar,2,Fidresa_900 @Z32_Z39
+La Dulce,cebada,foliar,2,Fidresa_900 @Z39
+MDP,cebada,foliar,2,Fidresa_900 @Z39
+Tandil,cebada,foliar,1,Fidresa_900 @Z39
+Tandil,trigo,foliar,1,Fidresa_900 @Z39
+MDP,trigo,foliar,5,Goldleaf_2000 @Z32_Z39
+La Dulce,cebada,foliar,5,Goldleaf_2000 @Z39
+MDP,cebada,foliar,5,Goldleaf_2000 @Z39
+Tandil,cebada,foliar,4,Goldleaf_2000 @Z39
+Tandil,trigo,foliar,4,Goldleaf_2000 @Z39
+La Dulce,cebada,foliar,7,Miravis_200 + Elatus_500 @Z39
+MDP,cebada,foliar,7,Miravis_200 + Elatus_500 @Z39
+Tandil,cebada,foliar,6,Miravis_200 + Elatus_500 @Z39
+Tandil,trigo,foliar,6,Miravis_200 + Elatus_500 @Z39
+La Dulce,cebada,foliar,6,Orquesta_1200 @Z39
+MDP,cebada,foliar,6,Orquesta_1200 @Z39
+Tandil,cebada,foliar,5,Orquesta_1200 @Z39
+MDP,trigo,foliar,10,Orquesta_1200 @Z39
+Tandil,trigo,foliar,5,Orquesta_1200 @Z39
+MDP,trigo,semilla,4,Rancona_trio 300
+Tandil,trigo,semilla,4,Rancona_trio 300
+MDP,cebada,semilla,4,Rancona_trio 400
+Tandil,cebada,semilla,4,Rancona_trio 400
+La Dulce,trigo,semilla,4,Rancona_trio_300
+La Dulce,cebada,semilla,4,Rancona_trio_400
+La Dulce,trigo,semilla,5,Rizoderma
+MDP,trigo,semilla,5,Rizoderma
+Tandil,trigo,semilla,5,Rizoderma
+MDP,trigo,semilla,6,Rizoderma  + Vitagrow + STZn
+Tandil,trigo,semilla,6,Rizoderma  + Vitagrow + STZn
+La Dulce,trigo,semilla,6,Rizoderma + Vitagrow + STZn
+La Dulce,cebada,semilla,5,Rizoderma_SX
+La Dulce,cebada,semilla,6,Rizoderma_SX + Vitagrow + STZn
+MDP,cebada,semilla,5,Rizoderma_sedaxane
+Tandil,cebada,semilla,5,Rizoderma_sedaxane
+MDP,cebada,semilla,6,Rizoderma_sedaxane  + vitagrow + STZn
+Tandil,cebada,semilla,6,Rizoderma_sedaxane  + vitagrow + STZn
+La Dulce,cebada,semilla,3,Sistiva_premis
+MDP,cebada,semilla,3,Sistiva_premis
+Tandil,cebada,semilla,3,Sistiva_premis
+La Dulce,trigo,semilla,3,Sistiva_premis
+MDP,trigo,semilla,3,Sistiva_premis
+Tandil,trigo,semilla,3,Sistiva_premis
+La Dulce,cebada,semilla,1,Sistiva_premis + ALZ_12051
+MDP,cebada,semilla,1,Sistiva_premis + ALZ_12051
+Tandil,cebada,semilla,1,Sistiva_premis + ALZ_12051
+La Dulce,trigo,semilla,1,Sistiva_premis + ALZ_12051
+MDP,trigo,semilla,1,Sistiva_premis + ALZ_12051
+Tandil,trigo,semilla,1,Sistiva_premis + ALZ_12051
+MDP,trigo,semilla,9,Sistiva_premis + Zn Alltec
+Tandil,trigo,semilla,8,Sistiva_premis + Zn Alltec
+MDP,cebada,semilla,8,Sistiva_premis_2x
+Tandil,cebada,semilla,8,Sistiva_premis_2x
+MDP,trigo,semilla,8,Sistiva_premis_2x
+MDP,trigo,foliar,9,Taser_Xpert_400 @Z32 / Excalia_Max_700 @Z39
+Tandil,cebada,semilla,2,Vibrance integral
+MDP,trigo,semilla,2,Vibrance integral
+Tandil,trigo,semilla,2,Vibrance integral
+La Dulce,cebada,semilla,2,Vibrance_integral
+MDP,cebada,semilla,2,Vibrance_integral
+La Dulce,trigo,semilla,2,Vibrance_integral

@@ -24,11 +24,12 @@ dat %>% distinct(prod) %>% pull() %>% sort()
 library(googlesheets4)
 gs4_deauth()
 "https://docs.google.com/spreadsheets/d/1Wcxxw3hzcAwpFGZS5qf1H_8utLa0UnMIG6-sztdsYug/edit?usp=sharing" %>%
-  gs4_get() -> google_file
+  gs4_get() -> google_file 
 ```
 
 ```{r, eval=FALSE}
 raw_rinde <- google_file %>% read_sheet(sheet = "cosecha", range = "A:I")
+# raw_rinde %>% filter(sitio=="La Dulce", protec=="semilla", trt==3)
 trt_list <- google_file %>% read_sheet(sheet = "trt_list", range = "A:F")
 dat <- left_join(raw_rinde, trt_list) %>% 
   mutate(estrategia = replace_na(estrategia, "simple"))

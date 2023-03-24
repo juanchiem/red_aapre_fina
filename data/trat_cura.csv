@@ -1,4 +1,4 @@
-sitio,cultivo,crop_trat,trat_id,trat,trat_compact
+sitio,cultivo,crop_trt,trt,prod,prod_compact
 MDP,cebada,C9,9,Check,CHECK
 MDP,cebada,C10,10,Check,CHECK
 MDP,trigo,T10,10,Check,CHECK
