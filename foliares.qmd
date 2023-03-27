@@ -13,8 +13,6 @@ source(here::here("setup.R"))
 dat <-  rio::import(file="data/rinde_foliares.csv")
 ```
 
-# Sitios experimentales
-
 ```{r}
 meta_foliar <-  rio::import(file = "data/meta_foliares.csv")
 meta_foliar %>% 
@@ -22,8 +20,10 @@ meta_foliar %>%
   as_hux() %>% 
   set_font_size(10) %>% 
   theme_article() %>% 
-  set_tb_padding(.1)
+  set_tb_padding(.1) %>% 
+  set_caption("Sitios experimentales")
 ```
+
 ```{r, }
 trat_tabs <- dat %>% #distinct(cultivo, prod)
   filter(prod != "Cripton_600 @Z39") %>% 
@@ -34,9 +34,10 @@ trat_tabs <- dat %>% #distinct(cultivo, prod)
   rename(Tratamiento = prod) 
 ```
 
-### Cebada 
+## Cebada 
 
-Lista de tratamientos de cada sitio
+En ninguno de los 3 sitios experimentales hubo presencia de enfermedades en Z32, por lo que se optó por adoptar una estrategia de aplicación simple en Z39.  
+
 
 ```{r}
 trat_tabs %>% 
@@ -45,10 +46,11 @@ trat_tabs %>%
   as_hux() %>% 
   set_font_size(10) %>% 
   theme_article() %>% 
-  set_tb_padding(.1)
+  set_tb_padding(.1) %>% 
+  set_caption("Tratamientos foliares en cebada")
 ```
 
-#### Sanidad
+### Sanidad
 
 ```{r}
 eval <- rio::import("data/eval_foliares.csv") %>% 
@@ -56,9 +58,12 @@ eval <- rio::import("data/eval_foliares.csv") %>%
   filter(prod!="Cripton_600 @Z39")
 ```
 
+Mancha en red (_Pyrenophora teres_) fue la enfermedad presente en los sitios de La Dulce y MdP (ausencia en Tandil), en bajos niveles de severidad por lo que se analizó la incidencia de la enfermedad (MR_inc). 
+
+#### Análisis individual intra-sitio {.unnumbered}
+
 ```{r}
 eval %>% 
-  # count(cultivo, trt, prod)
   group_by(sitio) %>%
   nest() %>% 
   mutate(
@@ -67,13 +72,15 @@ eval %>%
     clds = map(emms, ~ cld(., Letters = letters, alpha = .05,
                            type = "response", reversed = F))) %>% 
   unnest(clds) %>% 
-  dplyr::select(!c(data, model, emms)) %>% 
+  select(!c(data, model, emms, SE, df)) %>% 
+  select(Sitio=sitio,	Tratamiento=prod, incidencia=response, Tukey=.group)%>%  
   as_hux() %>% 
   set_font_size(10) %>% 
   theme_article() %>% 
   set_tb_padding(.1)
 ```
 
+#### Análisis global {.unnumbered}
 
 ```{r}
 eval %>% 
@@ -88,17 +95,18 @@ eval %>%
                            type = "response", reversed = F))) %>% 
   unnest(clds) %>% 
   dplyr::select(!c(data, model, emms)) %>%
-  mutate(`Control%`=abs((response/filter(., prod=="Check")%>% pull(response)-1)*100)) %>% 
+  mutate(`%Control`=abs((response/filter(.,prod=="Check")%>% pull(response)-1)*100)) %>% 
+  select(MR_inc=response, limite_inferior=lower.CL, limite_superior=upper.CL, Tukey=.group, `%Control`) %>% 
   as_hux() %>% 
   set_font_size(10) %>% 
   theme_article() %>% 
-  set_tb_padding(.1)
+  set_tb_padding(.1) %>% 
+  set_caption("Incidencia estimada por tratamiento. Letras diferentes representan diferencias significativas según Test de Tukey al 5%") 
 ```
 
-Todos los tratamientos se diferenciaron del testigo sin tratar  
+Todos los tratamientos se diferenciaron del testigo sin tratar, con niveles de control de entre 40 a 62% en relacion al testigo sin tratar. 
 
-
-#### Rendimiento
+### Rendimiento
 
 ```{r}
 dat %>% 
@@ -109,7 +117,6 @@ dat %>%
   mutate_at(vars(prod, bq, sitio), as.factor) %>% 
   droplevels()-> cebada_foliar
 ```
-
 
 ```{r}
 cebada_foliar %>%
@@ -143,11 +150,8 @@ cebada_foliar %>%
 
 > El rendimiento (valor mediano) fue en orden creciente en La Dulce < Tandil < MdP, con menor dispersión en MdP (parcelas mas homogéneas entre si). 
 
-> En ninguno de los 3 sitios experimentales hubo presencia de enfermedades en Z32, por lo que se optó por adoptar una estrategia de aplicación simple en Z39.  
-
 ```{r, fig.height = 4, fig.width = 8}
 #| fig-cap: Rendimientos observados y su media aritmética
-
 cebada_foliar %>% 
   ggplot() + 
   aes(y=prod, x=kg_ha) + 
@@ -158,16 +162,17 @@ cebada_foliar %>%
   stat_summary(aes(label=round(..x..)), fun=mean, geom="text", size=3, vjust=-.5) +
   scale_x_continuous(breaks = scales::pretty_breaks(4), 
                      guide=guide_axis(n.dodge=2)) +
-  labs(y="", x ="kg/ha", title = "Foliares - Cebada")
+  labs(y="", x ="kg/ha")
 ```
 
-#### Modelos intra-sitios
+#### Análisis individual intra-sitio {.unnumbered}
 
 ```{r}
 cebada_foliar %>%
   group_by(sitio) %>%
   group_modify(~ broom::tidy(car::Anova(lmer(kg_ha ~ prod +(1|bq), data = .x)))) %>%
   mutate(p.value = scales::pvalue(p.value, add_p = TRUE)) %>% 
+  select(-term) %>% 
   as_hux() %>% 
   set_font_size(10) %>% 
   theme_article() %>% 
@@ -200,13 +205,13 @@ cebada_foliar %>%
   set_number_format(1)
 ```
 
-#### Modelo global 
+#### Modelo global {.unnumbered}
 
 ```{r}
 m1 <- lmer(kg_ha ~ prod + (1|sitio/bq), data=cebada_foliar)
-# plot(cf1)
-# check_heteroscedasticity(cf1) %>% plot
-# check_normality(cf1)%>% plot
+plot(m1)
+check_heteroscedasticity(m1)
+check_normality(m1)
 # AIC(cf1)
 
 m1 %>% 
@@ -229,9 +234,7 @@ m1 %>%
 
 > A nivel de ensayo individual no se observó efecto significativo de los tratamientos de protección foliar pero si, cuando ampliamos hacia el  análisis conjunto. Dos tratamientos se distinguieron del testigo sin tratar: Miravis TP y Cripton Xpro. El resto de los tratmientos quedaron en situación intermedia: con respuestas entre 9,4% a 12,4% no se diferenciaron ni de los mejores tratamientos, ni del testigo sin tratar.   
 
-### Trigo 
-
-Lista de tratamientos de cada sitio (y su cantidad de parcelas)
+## Trigo 
 
 ```{r}
 trat_tabs %>% 
@@ -257,6 +260,7 @@ trat_tabs %>%
   set_tb_padding(.1)%>%
   set_caption("Estrategia de aplicación simple - sitio Tandil")
 ```
+
 Presion de enfermedades de los ensayos: 
 
 Cebada: 
@@ -270,12 +274,15 @@ Trigo:
 
  
 ```{r}
-press_upa <- rio::import("data/eval_foliares.xls", sheet=2)
+rio::import("data/eval_foliares.xls", sheet=2) %>% 
+  rio::export("data/press_RA.csv")
+
+press_upa <- rio::import("data/press_RA.csv")
 ```
 
-Evolución de roya amarilla en sitio MdP (nivel de hoja individual del testigo)
+Evolución de roya amarilla en sitio MdP (incidencia a nivel de hoja del testigo, baja severidad en Z32: ~ 1%)
 
-```{r}
+```{r fig.width=4}
 press_upa %>%  
   pivot_longer(-hj, 
                names_to = "feno") %>%
@@ -293,6 +300,7 @@ press_long %>%
   guides(fill="none")
 ```
 
+Todos los tratamientos erradicaron la roya amarilla ya que fue controlada a tiempo en la primer aplicación de Z32, y luego con la re-aplicación en Z39 no quedaron rastros de pústulas en todo el cultivo.
 
 ```{r}
 dat %>% 
@@ -305,6 +313,7 @@ dat %>%
   filter(!(sitio == "MDP"& trt==5	& bq ==3)) -> trigo_foliar  
   # filter(!(prod == "Cripton 600 @Z39")) %>% 
 ```
+
 
 ```{r}
 trigo_foliar %>%
