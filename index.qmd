@@ -1,0 +1,46 @@
+---
+title: "Protección de sanitaria de cereales de invierno "
+subtitle: "Sudeste de Buenos Aires"
+---
+
+- Coordinación general: Segundo Fernandez Páez (Coordinador de regionales AAPRESID Nodo Sur)
+- Coordinación técnica: Juan Edwards (INTA Balcarce)
+- Regionales Aapresid participantes: Juan Manuel Fangio, Necochea y Tandilia
+
+## Sitios experimentales
+
+![](plots/mapa_sitios.png)
+
+## Condiciones meteorológicas
+
+Balance hidrico y evolución de temperaturas obtenido del sitio web de la Oficina de Riesgo Agropecuario [ORA](http://www.ora.gob.ar/camp_actual_reservas.php)
+
+La campaña se caracterizó por su déficit hídrico generalizado lo que se puede apreciar en las figuras de los balances de agua por debajo de la carga normal de los perfiles. Esta situación se presentó mas comprometida en suelos someros (como el caso de La Dulce), lo que se vió reflejado a lo largo del desarrollo de los cultivos, desde la misma implantación con canopeos menos densos en comparación con Tandil, y Mar del Plata, localidad que se vio menos perjudicada de las tres. El pronunciado stress hidrico en el sitio experimental de La Dulce determinó la cancelación a medio término del ensayo de trigo, ya que no solo no logró cubrir el surco si no que el impacto de las heladas afectó gravemente el área experimental post aplicacion de los tratamientos.  
+
+En cuanto a la evolución  de temperaturas se registraron heladas tardias en toda la región. Particularmente en Tandil,  sumado al critico estado hidrico, perjudicó el llenado de granos, reflejado en el elevado coeficiente de variación del rendimiento, por lo cual se sugiere tomar con precaución los datos de rendimiento del sitio expermiental. 
+
+* Tandil 
+
+::: {layout-ncol=2}
+![](plots/TAND_TL.jpg)
+
+![](plots/tandil_temp.png)
+:::
+
+* Mar del Plata
+
+::: {layout-ncol=2}
+![](plots/MDQ_TL.jpg) 
+
+![](plots/mdp_temp.png)
+:::
+
+* La Dulce
+
+::: {layout-ncol=2}
+![](plots/DULCE_TL.jpg) 
+
+![](plots/juarez_temp.png) 
+:::
+
+

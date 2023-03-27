@@ -1,0 +1,26 @@
+project:
+  type: book
+  output-dir: docs
+execute:
+  cache: false
+  freeze: auto
+book:
+  
+  page-footer: 
+    border: false
+    background: light
+    left: "Red protección sanitaria de cereales de invierno - Sudeste de Bs As"
+       
+  chapters:
+    - index.qmd
+    - cura.qmd
+    - foliares.qmd
+    - datasets.qmd
+    
+format:
+  html:
+    toc: true
+    toc-depth: 5
+    theme: 
+      light: cosmo
+      dark: superhero

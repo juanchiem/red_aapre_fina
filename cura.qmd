@@ -1,0 +1,338 @@
+```{r include=FALSE}
+source(here::here("setup.R"))
+```
+
+# Curasemillas
+
+```{r}
+meta <- read.csv("data/meta_cura.csv") 
+
+meta %>% 
+  dplyr::select(Cultivo, Sitio, Cultivar, Fecha_siembra, plot_size)%>%
+  as_hux() %>% 
+  set_font_size(10) %>% 
+  theme_article() %>% 
+  set_tb_padding(.1)
+```
+
+
+## Tratamientos
+
+```{r cober_dat}
+cober_dat <- read.csv("data/cober_dat.csv") %>% 
+    filter(prod!="SISTIVA_PREMIS_2X") 
+```
+
+```{r, }
+tabs_cura <- cober_dat %>%
+  count(cultivo, prod, sitio) %>%
+  mutate(n=if_else(n>0, "si", "no")) %>% 
+  pivot_wider(names_from =  "sitio", values_from = "n") %>%
+  rename(Tratamiento = prod) 
+```
+
+Lista de tratamientos de cada sitio (y su cantidad de parcelas)
+
+-   Cebada
+
+```{r}
+tabs_cura %>% 
+  filter(cultivo=="Cebada") %>% 
+  dplyr::select(-cultivo) %>%
+  as_hux() %>% 
+  set_font_size(10) %>% 
+  theme_article() %>% 
+  set_tb_padding(.1)
+```
+
+-   Trigo
+
+```{r}
+tabs_cura %>% 
+  filter(cultivo=="Trigo") %>% 
+  dplyr::select(-cultivo) %>% 
+  as_hux() %>% 
+  set_font_size(10) %>% 
+  theme_article() %>% 
+  set_tb_padding(.1)
+```
+
+Tandil y MdP tuvieron la misma lista de tratamientos y en ambos casos la siembra se realizó con sembradora experimental. En La Dulce, se testearon 6 tratamientos y la siembra se hizo con máquina del productor.
+
+## Cobertura
+
+Con el objetivo de tener una variable de desarrollo vegetativo se evalúo el % de cobertura con app canopeo.
+
+```{r}
+cober_dat %>% 
+  ggplot()+
+  aes(x = val, y = after_stat(count / sum(count))) +
+  geom_histogram(alpha=.5) +
+  scale_y_continuous(labels = scales::percent)+
+  geom_boxploth(aes(y=.02), width=.01, fill="blue", alpha=.2)+
+  geom_rug(aes(val, y = NULL))+
+  stat_summaryh(fun.x=median, geom="text", aes(label=round(..x..), y=.01)) +
+  facet_grid(sitio ~ cultivo)
+```
+
+```{r cober_plot, fig.width=8, fig.height=6}
+cober_dat %>% 
+  filter(!prod=="SISTIVA_PREMIS_2X") %>% 
+  mutate(sitio = stringr::str_to_upper(sitio)) %>% 
+  ggplot()+
+  aes(x=prod, y= val)+
+  facet_grid(cultivo ~ sitio, scales = "free") + 
+  geom_point(alpha=.2) +
+  # geom_text(aes(label=trt), size=3)+
+  stat_summary(fun=mean, col="red") + 
+  stat_summary(fun=mean, aes(label=round(after_stat(y))), geom="text", size=3, vjust=-.5) + 
+  labs(y="Cobertura en macollaje  (%)", x="") + 
+  theme_bw()+
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) + 
+  coord_flip()
+```
+
+```{r, eval=FALSE}
+last_plot() %>% 
+  ggsave(filename = "plots/cobertura.jpg", w=8, h=6, units="cm", scale=3)
+```
+
+Análisis por ensayo individual
+
+```{r}
+cober_dat %>%
+  group_by(sitio, cultivo) %>%
+  nest() %>% 
+  mutate(model = map(data, ~aov(val ~ prod, data = .x)),
+         "cv%" = map(model, ~ round(agricolae::cv.model(.x),1)))%>% 
+  unnest("cv%") %>%
+  dplyr::select(!c(data, model)) %>% 
+  as_hux() %>% 
+  set_font_size(10) %>% 
+  theme_article() %>% 
+  set_tb_padding(.1)
+```
+
+Se observó que la variabilidad intra-ensayo no fue alta expresada mediante el coeficiente de variación < 10%
+
+A continuacion se presenta los análisis de varianza por ensayo con la variable cobertura (%) transformada al arcoseno de la raiz cuadrada, para cumplir los supuestos de los modelos lineares
+
+```{r}
+cober_dat %>%
+  group_by(cultivo, sitio) %>%
+  nest() %>% 
+  mutate(model = map(data, 
+                     # ~glm(val/100 ~ prod, family=quasibinomial, data=.x)),
+                     ~with(asin_tran, lm(linkfun(val) ~ prod, data = .x))),
+         emms = map(model, ~ emmeans(., ~ prod, type = "response")),
+         clds = map(emms, ~ cld(., Letters = letters, alpha = .05,
+                                type = "response", reversed = T))) %>% 
+  
+  unnest(clds) %>% 
+  dplyr::select(!c(data, model, emms)) %>% 
+    as_hux() %>% 
+  set_font_size(10) %>% 
+  theme_article() %>% 
+  set_tb_padding(.1)
+```
+
+```{r}
+cober_dat %>%
+  group_by(cultivo) %>%
+  nest() %>% 
+  mutate(model = map(data, 
+                     ~with(asin_tran, lmer(linkfun(val) ~ prod + (1|sitio), data = .x))),
+         emms = map(model, ~ emmeans(., ~ prod, type = "response")),
+         clds = map(emms, ~ cld(., Letters = letters, alpha = .05,
+                                type = "response", reversed = T))) %>% 
+  
+  unnest(clds) %>% 
+  dplyr::select(!c(data, model, emms)) %>% 
+  as_hux() %>% 
+  set_font_size(10) %>% 
+  theme_article() %>% 
+  set_tb_padding(.1) 
+```
+
+En conistencia con lo observado a campo, no se detectaron diferencias estadisticas en el % de cobertura entre los tratamientos, ni a nivel individual intra-ensayo como a nivel global inter-ensayos
+
+## Rinde
+
+### Cebada
+
+```{r}
+rinde_cura <- rio::import("data/rinde_cura_dat.csv")
+rinde_cura %>%
+  filter(cultivo=="cebada") %>% 
+  group_by(sitio) %>%
+  nest() %>% 
+  mutate(model = map(data, ~aov(kg_ha ~ prod + bq, data = .x)),
+         `CV` = map(model, ~ round(agricolae::cv.model(.x),1)) %>%
+           sprintf("%0.1f%%", .))%>% 
+  unnest(`CV`) %>%
+  dplyr::select(!c(data, model))  %>%
+    as_hux() %>% 
+  set_font_size(10) %>% 
+  theme_article() %>% 
+  set_tb_padding(.1)
+```
+
+```{r}
+rinde_cura %>% 
+  filter(cultivo=="cebada") %>% 
+  ggplot()+
+  facet_grid(sitio ~ ., scales="free")+ 
+  aes(x = kg_ha, y = after_stat(count / sum(count))) +
+  geom_histogram(alpha=.5) +
+  geom_boxploth(aes(y=.02), width=.01, fill="blue", alpha=.2)+
+  geom_rug(aes(kg_ha, y = NULL))+
+  stat_summaryh(fun.x=median, geom="text", aes(label=round(..x..), y=.01)) +
+  scale_y_continuous(labels = scales::percent)+
+  labs(y="")
+```
+
+```{r fig.width=8, fig.height=6}
+rinde_cura %>%   
+  filter(cultivo=="cebada") %>% 
+  mutate(cultivo = stringr::str_to_sentence(cultivo)) %>%
+  ggplot() + 
+  aes(y=prod, x=kg_ha) + 
+  facet_grid(. ~ sitio, scales = "free") + 
+  geom_point(alpha=.2) +
+  # geom_text(aes(label=trt), size=3)+
+  stat_summary(fun=mean, col="red") + 
+  stat_summary(aes(label=round(..x..)), fun=mean, geom="text", size=3, vjust=-.5) + 
+  scale_x_continuous(breaks = scales::pretty_breaks(5)) +
+  labs(y="", x ="Rendimiento (kg/ha)", title = "")
+```
+
+```{r, eval=FALSE}
+last_plot() %>% 
+  ggsave(filename = "plots/rinde_semilla_cebada_.jpg", w=8, h=6, units="cm", scale=3)
+```
+
+#### Análisis individual intra-sitio
+
+```{r}
+rinde_cura %>%
+  filter(cultivo=="cebada") %>% 
+  group_by(sitio) %>%
+  group_modify(~ broom::tidy(car::Anova(lmer(kg_ha ~ prod +(1|bq), data = .x)))) %>%
+  mutate(p.value = scales::pvalue(p.value, add_p = TRUE)) %>% 
+    as_hux() %>% 
+  set_font_size(10) %>% 
+  theme_article() %>% 
+  set_tb_padding(.1)
+  
+rinde_cura %>%
+  filter(cultivo=="cebada") %>% 
+  group_by(sitio) %>%
+  group_modify(~ lmer(kg_ha ~ prod + (1|bq), data = .x) %>%
+                 emmeans(., ~ prod, type = "response") %>%
+                 cld(., Letters = letters, alpha = .1,
+                     type = "response", reversed = T) %>%
+                 broom::tidy() %>% 
+                 rename(kg_ha = estimate) %>%
+                 mutate_if(is.character, as.factor)
+               ) %>% 
+  dplyr::select(-std.error, -df, -".group") %>% 
+    as_hux() %>% 
+  set_font_size(10) %>% 
+  theme_article() %>% 
+  set_tb_padding(.1)
+```
+
+> No se observaron diferencias significativas entre los tratamientos. Solo se realizó análisis individual debido a la diferencia entre lista de tratamientos entre La Dulce y Mar del Plata y la alta heterogeneidad del rendimiento en el sitio de Tandil. 
+
+
+### Trigo
+
+```{r}
+rinde_cura %>%
+  filter(cultivo=="trigo") %>% 
+  group_by(sitio) %>%
+  nest() %>% 
+  mutate(model = map(data, ~aov(kg_ha ~ prod + bq, data = .x)),
+         `CV` = map(model, ~ round(agricolae::cv.model(.x),1)) %>%
+           sprintf("%0.1f%%", .))%>% 
+  unnest(`CV`) %>%
+  dplyr::select(!c(data, model))  %>%
+    as_hux() %>% 
+  set_font_size(10) %>% 
+  theme_article() %>% 
+  set_tb_padding(.1)
+```
+
+
+```{r}
+rinde_cura %>% 
+  filter(cultivo=="trigo") %>% 
+  ggplot()+
+  facet_grid(sitio ~ ., scales="free")+ 
+  aes(x = kg_ha, y = after_stat(count / sum(count))) +
+  geom_histogram(alpha=.5) +
+  geom_boxploth(aes(y=.02), width=.01, fill="blue", alpha=.2)+
+  geom_rug(aes(kg_ha, y = NULL))+
+  stat_summaryh(fun.x=median, geom="text", aes(label=round(..x..), y=.01)) +
+  scale_y_continuous(labels = scales::percent)+
+  labs(y="")
+```
+
+
+```{r fig.width=8, fig.height=6}
+rinde_cura %>%   
+  filter(cultivo=="trigo") %>% 
+  mutate(cultivo = stringr::str_to_sentence(cultivo)) %>%
+  ggplot() + 
+  aes(y=prod, x=kg_ha) + 
+  facet_grid(. ~ sitio, scales = "free") + 
+  geom_point(alpha=.2) +
+  # geom_text(aes(label=trt), size=3)+
+  stat_summary(fun=mean, col="red") + 
+  stat_summary(aes(label=round(..x..)), fun=mean, geom="text", size=3, vjust=-.5) + 
+  scale_x_continuous(breaks = scales::pretty_breaks(5)) +
+  labs(y="", x ="Rendimiento (kg/ha)", title = "")
+```
+
+```{r, eval=FALSE}
+last_plot() %>% 
+  ggsave(filename = "plots/rinde_semilla_trigo_.jpg", w=8, h=6, units="cm", scale=3)
+```
+
+#### Análisis individual intra-sitio
+
+```{r}
+rinde_cura %>%
+  filter(cultivo=="trigo") %>% 
+  group_by(sitio) %>%
+  group_modify(~ broom::tidy(car::Anova(lmer(kg_ha ~ prod +(1|bq), data = .x)))) %>%
+  mutate(p.value = scales::pvalue(p.value, add_p = TRUE)) %>% 
+  as_hux() %>% 
+  set_font_size(10) %>% 
+  theme_article() %>% 
+  set_tb_padding(.1)
+  
+
+rinde_cura %>%
+  filter(cultivo=="trigo") %>% 
+  group_by(sitio) %>%
+  group_modify(~ 
+                 lmer(kg_ha ~ prod + (1|bq), data = .x) %>%
+                 emmeans(., ~ prod, type = "response") %>%
+                 cld(., Letters = letters, alpha = .1,
+                     type = "response", reversed = T) %>%
+                 broom::tidy() %>% 
+                 rename(kg_ha = estimate) %>%
+                 mutate_if(is.character, as.factor)
+               ) %>% 
+  dplyr::select(-std.error, -df, -".group") %>% 
+    as_hux() %>% 
+  set_font_size(10) %>% 
+  theme_article() %>% 
+  set_tb_padding(.1) %>% 
+  set_number_format(1)
+```
+
+> Igual resultados que en cebada: sin diferencias entre los tratamientos a nivel de ensayo individual e imposibilidad de analisis global entre los sitios por los motivos ya mencionados. 
+
+

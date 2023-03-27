@@ -1,0 +1,434 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+```{r include=FALSE, message=FALSE, warning=FALSE}
+source(here::here("setup.R"))
+```
+
+# Fungicidas foliares
+
+```{r include=FALSE}
+dat <-  rio::import(file="data/rinde_foliares.csv")
+```
+
+# Sitios experimentales
+
+```{r}
+meta_foliar <-  rio::import(file = "data/meta_foliares.csv")
+meta_foliar %>% 
+  arrange(Cultivo) %>% 
+  as_hux() %>% 
+  set_font_size(10) %>% 
+  theme_article() %>% 
+  set_tb_padding(.1)
+```
+```{r, }
+trat_tabs <- dat %>% #distinct(cultivo, prod)
+  filter(prod != "Cripton_600 @Z39") %>% 
+  filter(prod !="Check") %>% 
+  count(cultivo, prod, sitio) %>%
+  mutate(n=if_else(n>0, "si", "no")) %>% 
+  pivot_wider(names_from =  "sitio", values_from = "n") %>%
+  rename(Tratamiento = prod) 
+```
+
+### Cebada 
+
+Lista de tratamientos de cada sitio
+
+```{r}
+trat_tabs %>% 
+  filter(cultivo=="cebada") %>% 
+  select(-cultivo) %>%
+  as_hux() %>% 
+  set_font_size(10) %>% 
+  theme_article() %>% 
+  set_tb_padding(.1)
+```
+
+#### Sanidad
+
+```{r}
+eval <- rio::import("data/eval_foliares.csv") %>% 
+  mutate(sev_media=sev*inc/100) %>% 
+  filter(prod!="Cripton_600 @Z39")
+```
+
+```{r}
+eval %>% 
+  # count(cultivo, trt, prod)
+  group_by(sitio) %>%
+  nest() %>% 
+  mutate(
+    model = map(data, ~with(asin_tran, lm(linkfun(inc)~prod+bq, data = .x))),
+    emms = map(model, ~ emmeans(., ~ prod, type = "response")),
+    clds = map(emms, ~ cld(., Letters = letters, alpha = .05,
+                           type = "response", reversed = F))) %>% 
+  unnest(clds) %>% 
+  dplyr::select(!c(data, model, emms)) %>% 
+  as_hux() %>% 
+  set_font_size(10) %>% 
+  theme_article() %>% 
+  set_tb_padding(.1)
+```
+
+
+```{r}
+eval %>% 
+  # count(cultivo, trt, prod)
+  group_by() %>%
+  nest() %>% 
+  mutate(
+    model = map(data, ~with(asin_tran, lmer(linkfun(inc)~prod+(1|sitio/bq), 
+                                          data = .x))),
+    emms = map(model, ~ emmeans(., ~ prod, type = "response")),
+    clds = map(emms, ~ cld(., Letters = letters, alpha = .05,
+                           type = "response", reversed = F))) %>% 
+  unnest(clds) %>% 
+  dplyr::select(!c(data, model, emms)) %>%
+  mutate(`Control%`=abs((response/filter(., prod=="Check")%>% pull(response)-1)*100)) %>% 
+  as_hux() %>% 
+  set_font_size(10) %>% 
+  theme_article() %>% 
+  set_tb_padding(.1)
+```
+
+Todos los tratamientos se diferenciaron del testigo sin tratar  
+
+
+#### Rendimiento
+
+```{r}
+dat %>% 
+  filter(cultivo == "cebada") %>%
+  # filter(!(sitio == "Tandil" & trt ==7 & (kg_ha<3000|kg_ha>5500))) %>%
+  mutate(prod = fct_relevel(prod, "Check")) %>% 
+  filter(!(prod == "Cripton_600 @Z39")) %>% 
+  mutate_at(vars(prod, bq, sitio), as.factor) %>% 
+  droplevels()-> cebada_foliar
+```
+
+
+```{r}
+cebada_foliar %>%
+  filter(cultivo=="cebada") %>% 
+  group_by(sitio) %>%
+  nest() %>% 
+  mutate(model = map(data, ~aov(kg_ha ~ prod + bq, data = .x)),
+         `CV` = map(model, ~ round(agricolae::cv.model(.x),1)) %>%
+           sprintf("%0.1f%%", .))%>% 
+  unnest(`CV`) %>%
+  select(!c(data, model))  %>%
+  as_hux() %>% 
+  set_font_size(10) %>% 
+  theme_article() %>% 
+  set_tb_padding(.1)%>% 
+  set_number_format(1)
+```
+
+```{r, fig.height = 6, fig.width = 6, fig.cap="Distribución de rendimientos observados de cebada"}
+cebada_foliar %>% 
+  ggplot()+
+  facet_grid(sitio ~ ., scales="free")+ 
+  aes(x = kg_ha, y = after_stat(count / sum(count))) +
+  geom_histogram(alpha=.5) +
+  geom_boxploth(aes(y=.02), width=.01, fill="blue", alpha=.2)+
+  geom_rug(aes(kg_ha, y = NULL))+
+  stat_summaryh(fun.x=median, geom="text", aes(label=round(..x..), y=.01)) +
+  scale_y_continuous(labels = scales::percent)+
+  labs(y="")
+```
+
+> El rendimiento (valor mediano) fue en orden creciente en La Dulce < Tandil < MdP, con menor dispersión en MdP (parcelas mas homogéneas entre si). 
+
+> En ninguno de los 3 sitios experimentales hubo presencia de enfermedades en Z32, por lo que se optó por adoptar una estrategia de aplicación simple en Z39.  
+
+```{r, fig.height = 4, fig.width = 8}
+#| fig-cap: Rendimientos observados y su media aritmética
+
+cebada_foliar %>% 
+  ggplot() + 
+  aes(y=prod, x=kg_ha) + 
+  facet_grid(. ~ sitio, scales = "free") +
+  # geom_text(aes(label=trt), size=3)+
+  geom_point(alpha=.2) +
+  stat_summary(fun=mean, col="red", alpha=.5) + 
+  stat_summary(aes(label=round(..x..)), fun=mean, geom="text", size=3, vjust=-.5) +
+  scale_x_continuous(breaks = scales::pretty_breaks(4), 
+                     guide=guide_axis(n.dodge=2)) +
+  labs(y="", x ="kg/ha", title = "Foliares - Cebada")
+```
+
+#### Modelos intra-sitios
+
+```{r}
+cebada_foliar %>%
+  group_by(sitio) %>%
+  group_modify(~ broom::tidy(car::Anova(lmer(kg_ha ~ prod +(1|bq), data = .x)))) %>%
+  mutate(p.value = scales::pvalue(p.value, add_p = TRUE)) %>% 
+  as_hux() %>% 
+  set_font_size(10) %>% 
+  theme_article() %>% 
+  set_tb_padding(.1)%>% 
+  set_number_format(1)
+```
+
+```{r}
+cebada_foliar %>%
+  group_by(sitio) %>%
+  group_modify(~ 
+                 lm(kg_ha ~ prod + bq, data = .x) %>%
+                 # lmer(kg_ha ~ prod + (1|bq), data = .x) %>%
+                 emmeans(., ~ prod, type = "response") %>%
+                 cld(., Letters = letters, alpha = .1,
+                     type = "response", reversed = T) %>%
+                 broom::tidy() %>% 
+                 rename(kg_ha = estimate) %>%
+                 mutate_if(is.character, as.factor)
+               ) %>% 
+  group_by(sitio) %>% 
+  mutate(test_kg_ha = kg_ha[prod == "Check"]) %>% 
+  mutate(dif_kg = kg_ha- test_kg_ha,
+         `dif_%` = (kg_ha/test_kg_ha - 1) * 100) %>% 
+  select(-std.error, -df, -test_kg_ha) %>% 
+  as_hux() %>% 
+  set_font_size(10) %>% 
+  theme_article() %>% 
+  set_tb_padding(.1)%>% 
+  set_number_format(1)
+```
+
+#### Modelo global 
+
+```{r}
+m1 <- lmer(kg_ha ~ prod + (1|sitio/bq), data=cebada_foliar)
+# plot(cf1)
+# check_heteroscedasticity(cf1) %>% plot
+# check_normality(cf1)%>% plot
+# AIC(cf1)
+
+m1 %>% 
+  emmeans(., ~ prod, type = "response") %>%  
+  cld(., Letters = letters, alpha = .05,
+      type = "response", reversed = T) %>%
+  broom::tidy() %>% 
+  rename(kg_ha = estimate, "tukey_5%"=.group) %>% 
+  mutate(test_kg_ha = kg_ha[prod == "Check"]) %>% 
+  mutate(dif_kg = kg_ha - test_kg_ha,
+         `dif_%` = (kg_ha/test_kg_ha - 1) * 100) %>% 
+  select(-std.error, -df, -test_kg_ha) %>% 
+  as_hux() %>% 
+  set_font_size(10) %>% 
+  theme_article() %>% 
+  set_tb_padding(.1) %>% 
+  set_number_format(1)
+```
+
+
+> A nivel de ensayo individual no se observó efecto significativo de los tratamientos de protección foliar pero si, cuando ampliamos hacia el  análisis conjunto. Dos tratamientos se distinguieron del testigo sin tratar: Miravis TP y Cripton Xpro. El resto de los tratmientos quedaron en situación intermedia: con respuestas entre 9,4% a 12,4% no se diferenciaron ni de los mejores tratamientos, ni del testigo sin tratar.   
+
+### Trigo 
+
+Lista de tratamientos de cada sitio (y su cantidad de parcelas)
+
+```{r}
+trat_tabs %>% 
+  filter(cultivo=="trigo") %>% 
+  drop_na(MDP) %>% 
+  select(Tratamiento, MDP) %>% 
+  as_hux() %>% 
+  set_font_size(10) %>% 
+  theme_article() %>% 
+  set_tb_padding(.1)%>%
+  set_caption("Estrategia de aplicación doble - sitio MdP")
+```
+
+
+```{r}
+trat_tabs %>% 
+  filter(cultivo=="trigo") %>% 
+  drop_na(Tandil) %>% 
+  select(Tratamiento, Tandil) %>% 
+  as_hux() %>% 
+  set_font_size(10) %>% 
+  theme_article() %>% 
+  set_tb_padding(.1)%>%
+  set_caption("Estrategia de aplicación simple - sitio Tandil")
+```
+Presion de enfermedades de los ensayos: 
+
+Cebada: 
+- La Dulce: mancha en red (10% incidencia en Z39)
+- MdP: mancha en red (15% incidencia en Z39)
+- Tandil: sin enfermedad en Z39
+ 
+Trigo:
+- Tandil: sin enfermedad en Z39
+- MdP: roya amarilla 20% incidencia en estrato inferior en Z32
+
+ 
+```{r}
+press_upa <- rio::import("data/eval_foliares.xls", sheet=2)
+```
+
+Evolución de roya amarilla en sitio MdP (nivel de hoja individual del testigo)
+
+```{r}
+press_upa %>%  
+  pivot_longer(-hj, 
+               names_to = "feno") %>%
+  mutate(hj = fct_rev(factor(factor(hj)))) %>%
+  group_by(feno, hj) %>%
+  summarise(sev = mean(value)) %>% 
+  ungroup()-> press_long
+
+press_long %>% 
+  ggplot(aes(x=feno, y=hj, fill=sev))+
+  geom_tile(col="white",  lwd = 2)+
+  scale_fill_gradient(low="green", high="red2", limits=c(0, 100))+
+  geom_text(aes(label = sev), color = "white", size = 4) + 
+  labs(x="", y="")+
+  guides(fill="none")
+```
+
+
+```{r}
+dat %>% 
+  filter(cultivo == "trigo") %>%
+  filter(sitio != "La Dulce") %>%
+  droplevels() %>% 
+  filter(!(sitio=="MDP"& prod=="Orquesta_1200 @Z39")) %>% 
+  # filter(!(sitio == "Tandil" & trt ==7 & (kg_ha<3000|kg_ha>5500))) %>%
+  mutate(prod = fct_relevel(prod, "Check")) %>% 
+  filter(!(sitio == "MDP"& trt==5	& bq ==3)) -> trigo_foliar  
+  # filter(!(prod == "Cripton 600 @Z39")) %>% 
+```
+
+```{r}
+trigo_foliar %>%
+  group_by(sitio) %>%
+  nest() %>% 
+  mutate(model = map(data, ~aov(kg_ha ~ prod + bq, data = .x)),
+         `CV` = map(model, ~ round(agricolae::cv.model(.x),1)) %>%
+           sprintf("%0.1f%%", .))%>% 
+  unnest(`CV`) %>%
+  select(!c(data, model))  %>%
+  as_hux() %>% 
+  set_font_size(10) %>% 
+  theme_article() %>% 
+  set_tb_padding(.1) %>% 
+  set_number_format('%1.1f')
+```
+
+```{r, fig.height = 4, fig.width = 6}
+trigo_foliar %>% 
+  ggplot()+
+  aes(x = kg_ha, y = after_stat(count / sum(count))) +
+  geom_histogram(alpha=.5) +
+  facet_grid(sitio ~ ., scales="free")+ 
+  geom_rug(aes(kg_ha, y = NULL))+
+  geom_boxploth(aes(y=.02), width=.01, fill="blue", alpha=.2)+
+  stat_summaryh(fun.x=median, geom="text", aes(label=round(..x..), y=.01)) +
+  scale_y_continuous(labels = scales::percent)+
+  labs(y="")
+```
+
+> El ensayo de MdP tuvo un buen logro: sin impacto de heladas y leve deficit hidrico, expresado a través del buen porte de las plantas. 
+
+> Este ensayo presento buena presión de roya amarilla (presente desde Z37 en baja severidad) observado en el testigo ya que en los tratamientos no logró desarrollarse por la aplicación temprana y el repaso en Z39. 
+
+
+```{r, fig.height = 8, fig.width = 8}
+#| fig-cap: Rendimientos observados y su media aritmética
+
+trigo_foliar %>% 
+  ggplot() + 
+  aes(y=prod, 
+      # col=factor(bq),  
+      x=kg_ha) + 
+  facet_grid(sitio~., scales = "free") + 
+  # geom_text(aes(label=trt), size=3)+
+  geom_point(alpha=.2) +
+  stat_summary(fun=mean, col="red", alpha=.5) + 
+  stat_summary(aes(label=round(..x..)), fun=mean, geom="text", size=3, vjust=-.5) + 
+  scale_x_continuous(breaks = scales::pretty_breaks(5), 
+                     guide=guide_axis(n.dodge=2)) +  
+  labs(y="", x="kg/ha", title = "Foliares - Trigo")
+```
+
+
+#### Modelos intra-sitios 
+
+(No se analiza globalmente el rendimiento ya que variaron las estrategias entre MdP y Tandil)
+
+```{r}
+trigo_foliar %>%
+  group_by(sitio) %>%
+  group_modify(~ broom::tidy(car::Anova(lmer(kg_ha ~ prod +(1|bq), data = .x)))) %>%
+  mutate(p.value = scales::pvalue(p.value, add_p = TRUE)) %>% 
+    as_hux() %>% 
+  set_font_size(10) %>% 
+  theme_article() %>% 
+  set_tb_padding(.1)%>% 
+  set_number_format(1)
+```
+
+```{r}
+trigo_foliar_tab <- trigo_foliar %>%
+  group_by(sitio) %>%
+  nest() %>% 
+  mutate(
+    model = map(data, ~lmer(sqrt(kg_ha) ~ prod + (1|bq), data = .x)),
+         emms = map(model, ~ emmeans(., ~ prod, type = "response")),
+         clds = map(emms, ~ cld(., Letters = letters, alpha = .1,
+                                type = "response", reversed = T))) %>% 
+  unnest(clds) %>% 
+  dplyr::select(!c(data, model, emms), kg_ha=response) %>% 
+  group_by(sitio) %>%
+  mutate(test_kg_ha = kg_ha[prod == "Check"]) %>% 
+  mutate(dif_kg = kg_ha- test_kg_ha,
+         `dif_%` = (kg_ha/test_kg_ha - 1) * 100) %>% 
+  dplyr::select(-SE, -df, -test_kg_ha, -contains(".CL")) %>% 
+  ungroup() %>% 
+  setNames(., c("sitio", "Tratamiento", "kg_ha", "Tukey_5%", "dif_kg", "dif_%"))
+```
+
+```{r}
+trigo_foliar_tab %>% 
+  filter(sitio=="MDP") %>% 
+  select(-sitio) %>% 
+  as_hux() %>% 
+  set_font_size(10) %>% 
+  theme_article() %>% 
+  set_tb_padding(.1)%>%
+  set_caption("Rendimientos medios estimados - sitio MdP") %>% 
+  set_number_format(0) 
+```
+
+> En MdP se observaron diferencias significativas en el rendimiento debido a los tratamientos de protección con fungicidas (doble aplicación). 
+Con respuestas de rendimiento de entre 26 a 41% todos los tratamientos se diferenciaron del testigo sin tratar. 
+
+```{r}
+trigo_foliar_tab %>%
+  filter(sitio=="Tandil") %>% 
+  select(-sitio) %>% 
+  as_hux() %>% 
+  set_font_size(10) %>% 
+  theme_article() %>% 
+  set_tb_padding(.1)%>% 
+  set_caption("Rendimientos medios estimados - sitio Tandil") %>% 
+  set_number_format(1)
+```
+> En Tandil no se observaron diferencias significativas entre los tratamientos. 
+
+
+# Conclusion general
+
+> La campaña 2022 de grano fino presentó anormalidades meteorológicas generando variabilidad de condiciones en la región Mar y Sierras. Por un lado, lotes con elevados daños de heladas potenciado por estrés hídrico en zonas continentales y en suelos someros y con nula o baja presión de enfermedades (sitios experimentales de Tandil y La Dulce), y por otro, cultivos con rendimientos normales, por lo general ubicados en zonas costeras, y con ambiente favorable para enfermedades. 
+
+> Los tratamientos curasemillas no evidenciaron diferencias notorias en parámetros vegetativos, aunque ofrecieron algunas tendencias en el rendimiento, que no se lograron expresar estadísticamente, probablemente por la baja potencia de los diseños (nro de repeticiones o replicas de ensayos). Estos factores podrian ser mejorados en futuros años experimentales (llevar a 4 repeticiones y replicar mas ensayos), con el objetivo de aumentar la potencia estadistica del análisis. 
+
+> En cambio, los tratamientos foliares, aun con baja presión de enfermedades, lograron expresar diferencias entre tratamientos, poniendo en evidencia el impacto del resguardo del área foliar en el cultivo de trigo y cebada. 
+
