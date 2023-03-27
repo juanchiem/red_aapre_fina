@@ -1,8 +1,9 @@
+# Protección de semillas
+
 ```{r include=FALSE}
 source(here::here("setup.R"))
 ```
 
-# Curasemillas
 
 ```{r}
 read.csv("data/meta_cura.csv") %>% 

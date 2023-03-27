@@ -5,7 +5,9 @@ execute:
   cache: false
   freeze: auto
 book:
-  
+  title: "Protección sanitaria de cereales de invierno"
+  subtitle: "Sudeste de Buenos Aires - Campaña 2022"
+  search: false
   page-footer: 
     border: false
     background: light
@@ -13,10 +15,10 @@ book:
        
   chapters:
     - index.qmd
+    - meteo.qmd
     - cura.qmd
     - foliares.qmd
-    - datasets.qmd
-    
+
 format:
   html:
     toc: true

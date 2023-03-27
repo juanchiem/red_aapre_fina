@@ -1,13 +1,8 @@
----
-output: html_document
-editor_options: 
-  chunk_output_type: console
----
-```{r include=FALSE, message=FALSE, warning=FALSE}
+# Protección foliar
+
+```{r include=FALSE}
 source(here::here("setup.R"))
 ```
-
-# Fungicidas foliares
 
 ```{r include=FALSE}
 dat <-  rio::import(file="data/rinde_foliares.csv")
@@ -187,7 +182,7 @@ cebada_foliar %>%
                  lm(kg_ha ~ prod + bq, data = .x) %>%
                  # lmer(kg_ha ~ prod + (1|bq), data = .x) %>%
                  emmeans(., ~ prod, type = "response") %>%
-                 cld(., Letters = letters, alpha = .1,
+                 cld(., Letters = letters, alpha = .05,
                      type = "response", reversed = T) %>%
                  broom::tidy() %>% 
                  rename(kg_ha = estimate) %>%
@@ -209,9 +204,9 @@ cebada_foliar %>%
 
 ```{r}
 m1 <- lmer(kg_ha ~ prod + (1|sitio/bq), data=cebada_foliar)
-plot(m1)
-check_heteroscedasticity(m1)
-check_normality(m1)
+# plot(m1)
+# check_heteroscedasticity(m1)
+# check_normality(m1)
 # AIC(cf1)
 
 m1 %>% 
@@ -274,8 +269,8 @@ Trigo:
 
  
 ```{r}
-rio::import("data/eval_foliares.xls", sheet=2) %>% 
-  rio::export("data/press_RA.csv")
+# rio::import("data/eval_foliares.xls", sheet=2) %>% 
+#   rio::export("data/press_RA.csv")
 
 press_upa <- rio::import("data/press_RA.csv")
 ```

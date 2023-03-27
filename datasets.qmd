@@ -1,8 +1,4 @@
----
-title: "Datasets"
-editor_options: 
-  chunk_output_type: console
----
+# Datasets
 
 ```{r, include=FALSE}
 library(dplyr)
