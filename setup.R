@@ -18,3 +18,5 @@ theme_set(theme_bw(base_size = 12))
 knitr::opts_chunk$set(echo = F, warning = FALSE, message = FALSE)
 
 asin_tran <- make.tran("asin.sqrt", 100)
+
+# quarto::quarto_render("document.qmd") # defaults to html

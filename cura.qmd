@@ -5,10 +5,8 @@ source(here::here("setup.R"))
 # Curasemillas
 
 ```{r}
-meta <- read.csv("data/meta_cura.csv") 
-
-meta %>% 
-  dplyr::select(Cultivo, Sitio, Cultivar, Fecha_siembra, plot_size)%>%
+read.csv("data/meta_cura.csv") %>% 
+  select(Cultivo, Sitio, Cultivar, Fecha_siembra, plot_size)%>%
   as_hux() %>% 
   set_font_size(10) %>% 
   theme_article() %>% 
@@ -16,11 +14,12 @@ meta %>%
 ```
 
 
-## Tratamientos
+## Tratamientos {.unnumbered}
+
 
 ```{r cober_dat}
 cober_dat <- read.csv("data/cober_dat.csv") %>% 
-    filter(prod!="SISTIVA_PREMIS_2X") 
+    dplyr::filter(prod!="SISTIVA_PREMIS_2X") 
 ```
 
 ```{r, }
@@ -31,7 +30,7 @@ tabs_cura <- cober_dat %>%
   rename(Tratamiento = prod) 
 ```
 
-Lista de tratamientos de cada sitio (y su cantidad de parcelas)
+Lista de tratamientos de cada sitio
 
 -   Cebada
 
@@ -57,7 +56,7 @@ tabs_cura %>%
   set_tb_padding(.1)
 ```
 
-Tandil y MdP tuvieron la misma lista de tratamientos y en ambos casos la siembra se realizó con sembradora experimental. En La Dulce, se testearon 6 tratamientos y la siembra se hizo con máquina del productor.
+Tandil y MdP tuvieron la misma lista de tratamientos y en ambos casos la siembra se realizó con sembradora experimental. En La Dulce, se testearon 6 tratamientos y la siembra se hizo con máquina de productor.
 
 ## Cobertura
 
@@ -97,11 +96,18 @@ last_plot() %>%
   ggsave(filename = "plots/cobertura.jpg", w=8, h=6, units="cm", scale=3)
 ```
 
-Análisis por ensayo individual
+### Análisis individual intra-sitio {.unnumbered}
+
+Se observó que la variabilidad intra-ensayo no fue alta expresada mediante el coeficiente de variación (CV < 10%)
+
+A continuación se presenta los análisis de varianza por ensayo con la variable cobertura (%) transformada al arcoseno de la raiz cuadrada, para cumplir los supuestos de los modelos lineares
+
+- Cebada
 
 ```{r}
-cober_dat %>%
-  group_by(sitio, cultivo) %>%
+cober_dat %>% 
+  filter(cultivo =="Cebada") %>% 
+  group_by(sitio) %>%
   nest() %>% 
   mutate(model = map(data, ~aov(val ~ prod, data = .x)),
          "cv%" = map(model, ~ round(agricolae::cv.model(.x),1)))%>% 
@@ -113,13 +119,10 @@ cober_dat %>%
   set_tb_padding(.1)
 ```
 
-Se observó que la variabilidad intra-ensayo no fue alta expresada mediante el coeficiente de variación < 10%
-
-A continuacion se presenta los análisis de varianza por ensayo con la variable cobertura (%) transformada al arcoseno de la raiz cuadrada, para cumplir los supuestos de los modelos lineares
-
 ```{r}
 cober_dat %>%
-  group_by(cultivo, sitio) %>%
+  filter(cultivo =="Cebada") %>% 
+  group_by(sitio) %>%
   nest() %>% 
   mutate(model = map(data, 
                      # ~glm(val/100 ~ prod, family=quasibinomial, data=.x)),
@@ -135,6 +138,46 @@ cober_dat %>%
   theme_article() %>% 
   set_tb_padding(.1)
 ```
+
+- Trigo
+
+```{r}
+cober_dat %>% 
+  filter(cultivo =="Trigo") %>% 
+  group_by(sitio) %>%
+  nest() %>% 
+  mutate(model = map(data, ~aov(val ~ prod, data = .x)),
+         "cv%" = map(model, ~ round(agricolae::cv.model(.x),1)))%>% 
+  unnest("cv%") %>%
+  dplyr::select(!c(data, model)) %>% 
+  as_hux() %>% 
+  set_font_size(10) %>% 
+  theme_article() %>% 
+  set_tb_padding(.1)
+```
+
+```{r}
+cober_dat %>%
+  filter(cultivo =="Trigo") %>% 
+  group_by(sitio) %>%
+  nest() %>% 
+  mutate(model = map(data, 
+                     # ~glm(val/100 ~ prod, family=quasibinomial, data=.x)),
+                     ~with(asin_tran, lm(linkfun(val) ~ prod, data = .x))),
+         emms = map(model, ~ emmeans(., ~ prod, type = "response")),
+         clds = map(emms, ~ cld(., Letters = letters, alpha = .05,
+                                type = "response", reversed = T))) %>% 
+  
+  unnest(clds) %>% 
+  dplyr::select(!c(data, model, emms)) %>% 
+    as_hux() %>% 
+  set_font_size(10) %>% 
+  theme_article() %>% 
+  set_tb_padding(.1)
+```
+
+
+### Análisis global por cultivo {.unnumbered}
 
 ```{r}
 cober_dat %>%
@@ -154,7 +197,7 @@ cober_dat %>%
   set_tb_padding(.1) 
 ```
 
-En conistencia con lo observado a campo, no se detectaron diferencias estadisticas en el % de cobertura entre los tratamientos, ni a nivel individual intra-ensayo como a nivel global inter-ensayos
+En consistencia con lo observado a campo, no se detectaron diferencias estadísticas en el % de cobertura entre los tratamientos, ni a nivel individual intra-ensayo como a nivel global inter-ensayos
 
 ## Rinde
 
@@ -211,7 +254,7 @@ last_plot() %>%
   ggsave(filename = "plots/rinde_semilla_cebada_.jpg", w=8, h=6, units="cm", scale=3)
 ```
 
-#### Análisis individual intra-sitio
+#### Análisis intra-sitio {.unnumbered}
 
 ```{r}
 rinde_cura %>%
@@ -263,7 +306,6 @@ rinde_cura %>%
   set_tb_padding(.1)
 ```
 
-
 ```{r}
 rinde_cura %>% 
   filter(cultivo=="trigo") %>% 
@@ -277,7 +319,6 @@ rinde_cura %>%
   scale_y_continuous(labels = scales::percent)+
   labs(y="")
 ```
-
 
 ```{r fig.width=8, fig.height=6}
 rinde_cura %>%   
@@ -299,7 +340,7 @@ last_plot() %>%
   ggsave(filename = "plots/rinde_semilla_trigo_.jpg", w=8, h=6, units="cm", scale=3)
 ```
 
-#### Análisis individual intra-sitio
+#### Análisis intra-sitio {.unnumbered}
 
 ```{r}
 rinde_cura %>%
@@ -333,6 +374,6 @@ rinde_cura %>%
   set_number_format(1)
 ```
 
-> Igual resultados que en cebada: sin diferencias entre los tratamientos a nivel de ensayo individual e imposibilidad de analisis global entre los sitios por los motivos ya mencionados. 
+> Sin diferencias entre los tratamientos a nivel de ensayo individual e imposibilidad de analisis global entre los sitios por los motivos ya mencionados. 
 
 

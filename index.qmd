@@ -1,19 +1,23 @@
 ---
-title: "Protección de sanitaria de cereales de invierno "
-subtitle: "Sudeste de Buenos Aires"
+title: "Protección sanitaria de cereales de invierno "
+subtitle: "Sudeste de Buenos Aires - Campaña 2022"
 ---
 
 - Coordinación general: Segundo Fernandez Páez (Coordinador de regionales AAPRESID Nodo Sur)
 - Coordinación técnica: Juan Edwards (INTA Balcarce)
 - Regionales Aapresid participantes: Juan Manuel Fangio, Necochea y Tandilia
 
-## Sitios experimentales
+## Sitios experimentales {.unnumbered}
 
-![](plots/mapa_sitios.png)
+![Localización de sitios experimentales](plots/mapa_sitios.png){fig-align="center"}
 
-## Condiciones meteorológicas
+* La Dulce: campo experimental del [Semillero Buck](https://maps.app.goo.gl/MKWH8AD4Me75CP1DA)
 
-Balance hidrico y evolución de temperaturas obtenido del sitio web de la Oficina de Riesgo Agropecuario [ORA](http://www.ora.gob.ar/camp_actual_reservas.php)
+* MDP: [Ea. El Silencio - UPA](https://goo.gl/maps/b9GsTpwBpxScjFA26)
+
+* Necochea: [Ea. Las Marias](https://maps.app.goo.gl/KsM2nnVsr1KpPx356) 
+
+## Condiciones meteorológicas {.unnumbered}
 
 La campaña se caracterizó por su déficit hídrico generalizado lo que se puede apreciar en las figuras de los balances de agua por debajo de la carga normal de los perfiles. Esta situación se presentó mas comprometida en suelos someros (como el caso de La Dulce), lo que se vió reflejado a lo largo del desarrollo de los cultivos, desde la misma implantación con canopeos menos densos en comparación con Tandil, y Mar del Plata, localidad que se vio menos perjudicada de las tres. El pronunciado stress hidrico en el sitio experimental de La Dulce determinó la cancelación a medio término del ensayo de trigo, ya que no solo no logró cubrir el surco si no que el impacto de las heladas afectó gravemente el área experimental post aplicacion de los tratamientos.  
 
@@ -43,4 +47,5 @@ En cuanto a la evolución  de temperaturas se registraron heladas tardias en tod
 ![](plots/juarez_temp.png) 
 :::
 
+Balance hídrico y evolución de temperaturas obtenido del sitio web de la Oficina de Riesgo Agropecuario [ORA](http://www.ora.gob.ar/camp_actual_reservas.php)
 

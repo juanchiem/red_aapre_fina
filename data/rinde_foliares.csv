@@ -1,0 +1,130 @@
+sitio,cultivo,protec,trt,bq,g,hum,m2,kg_ha,prod
+La Dulce,cebada,foliar,1,1,415,9.7,1.26,3458.33333333333,Check
+La Dulce,cebada,foliar,1,3,455,9.4,1.26,3804.26356589147,Check
+La Dulce,cebada,foliar,1,2,498,9.7,1.26,4150,Check
+La Dulce,cebada,foliar,2,1,470,9.7,1.26,3916.66666666667,Fidresa_900 @Z39
+La Dulce,cebada,foliar,2,3,499,9.7,1.26,4158.33333333333,Fidresa_900 @Z39
+La Dulce,cebada,foliar,2,2,523,9.7,1.26,4358.33333333333,Fidresa_900 @Z39
+La Dulce,cebada,foliar,3,1,432,9.7,1.26,3600,Cripton_Xpro_600 @Z39
+La Dulce,cebada,foliar,3,2,528,9.7,1.26,4400,Cripton_Xpro_600 @Z39
+La Dulce,cebada,foliar,3,3,761,9.7,1.26,5341.66666666667,Cripton_Xpro_600 @Z39
+La Dulce,cebada,foliar,4,3,476,9.7,1.26,3966.66666666667,Coverfull_Ace_500 @Z39
+La Dulce,cebada,foliar,4,2,558,9.7,1.26,4650,Coverfull_Ace_500 @Z39
+La Dulce,cebada,foliar,4,1,566,9.7,1.26,4716.66666666667,Coverfull_Ace_500 @Z39
+La Dulce,cebada,foliar,5,2,452,9.7,1.26,3766.66666666667,Goldleaf_2000 @Z39
+La Dulce,cebada,foliar,5,3,492,9.7,1.26,4100,Goldleaf_2000 @Z39
+La Dulce,cebada,foliar,5,1,600,9.7,1.26,5000,Goldleaf_2000 @Z39
+La Dulce,cebada,foliar,6,2,455,9.7,1.26,3791.66666666667,Orquesta_1200 @Z39
+La Dulce,cebada,foliar,6,3,539,9.7,1.26,4491.66666666667,Orquesta_1200 @Z39
+La Dulce,cebada,foliar,6,1,586,9.7,1.26,4883.33333333333,Orquesta_1200 @Z39
+La Dulce,cebada,foliar,7,2,470,9.7,1.26,3916.66666666667,Miravis_200 + Elatus_500 @Z39
+La Dulce,cebada,foliar,7,3,592,9.7,1.26,4933.33333333333,Miravis_200 + Elatus_500 @Z39
+La Dulce,cebada,foliar,7,1,663,9.7,1.26,5325,Miravis_200 + Elatus_500 @Z39
+La Dulce,cebada,foliar,8,3,389,9.7,1.26,3241.66666666667,Cripton_600 @Z39
+La Dulce,cebada,foliar,8,2,473,9.7,1.26,3941.66666666667,Cripton_600 @Z39
+La Dulce,cebada,foliar,8,1,587,9.7,1.26,4891.66666666667,Cripton_600 @Z39
+MDP,cebada,foliar,1,2,585,10.2,1.26,4848.00664451827,Check
+MDP,cebada,foliar,1,1,584,10.2,1.26,4839.71945367294,Check
+MDP,cebada,foliar,1,3,599,10.2,1.26,4964.0273163529,Check
+MDP,cebada,foliar,2,1,608,10.2,1.26,5038.61203396087,Fidresa_900 @Z39
+MDP,cebada,foliar,2,3,645,10.2,1.26,5345.2380952381,Fidresa_900 @Z39
+MDP,cebada,foliar,2,2,598,10.2,1.26,4955.74012550757,Fidresa_900 @Z39
+MDP,cebada,foliar,8,1,589,10.2,1.26,4881.1554078996,Cripton_600 @Z39
+MDP,cebada,foliar,8,3,595,10.2,1.26,4930.87855297158,Cripton_600 @Z39
+MDP,cebada,foliar,8,2,,,,,Cripton_600 @Z39
+MDP,cebada,foliar,4,3,607,10.2,1.26,5030.32484311554,Coverfull_Ace_500 @Z39
+MDP,cebada,foliar,4,2,630,10.2,1.26,5220.93023255814,Coverfull_Ace_500 @Z39
+MDP,cebada,foliar,4,1,618,10.5,1.26,5104.37430786268,Coverfull_Ace_500 @Z39
+MDP,cebada,foliar,5,1,596,10.2,1.26,4939.16574381691,Goldleaf_2000 @Z39
+MDP,cebada,foliar,5,3,604,10.2,1.26,5005.46327057955,Goldleaf_2000 @Z39
+MDP,cebada,foliar,5,2,650,10.2,1.26,5386.67404946475,Goldleaf_2000 @Z39
+MDP,cebada,foliar,6,3,594,10.2,1.26,4922.59136212625,Orquesta_1200 @Z39
+MDP,cebada,foliar,6,2,646,10.2,1.26,5353.52528608343,Orquesta_1200 @Z39
+MDP,cebada,foliar,6,1,662,10.1,1.26,5492.2296050203,Orquesta_1200 @Z39
+MDP,cebada,foliar,7,1,622,10.2,1.26,5154.6327057955,Miravis_200 + Elatus_500 @Z39
+MDP,cebada,foliar,7,3,647,10.2,1.26,5361.81247692876,Miravis_200 + Elatus_500 @Z39
+MDP,cebada,foliar,7,2,660,10.2,1.26,5469.54595791805,Miravis_200 + Elatus_500 @Z39
+MDP,cebada,foliar,3,3,589,10.2,1.26,4881.1554078996,Cripton_Xpro_600 @Z39
+MDP,cebada,foliar,3,1,619,9.7,1.26,5158.33333333333,Cripton_Xpro_600 @Z39
+MDP,cebada,foliar,3,2,655,10.4,1.26,5416.02067183463,Cripton_Xpro_600 @Z39
+MDP,trigo,foliar,1,1,379,10.1,1.26,3144.34293097084,Check
+MDP,trigo,foliar,1,2,354,9.8,1.26,2946.73311184939,Check
+MDP,trigo,foliar,1,3,418,9.4,1.26,3494.90586932447,Check
+MDP,trigo,foliar,2,1,542,11.2,1.26,4441.63898117387,Fidresa_900 @Z32_Z39
+MDP,trigo,foliar,2,2,469,9,1.26,3938.63049095607,Fidresa_900 @Z32_Z39
+MDP,trigo,foliar,2,3,445,9.3,1.26,3724.76005906238,Fidresa_900 @Z32_Z39
+MDP,trigo,foliar,3,1,604,10.5,1.26,4988.74123292728,Cripton_600 @Z32 / Cripton_Xpro_600 @Z39
+MDP,trigo,foliar,3,2,483,9.9,1.26,4016.08527131783,Cripton_600 @Z32 / Cripton_Xpro_600 @Z39
+MDP,trigo,foliar,3,3,545,10.4,1.26,4506.45994832041,Cripton_600 @Z32 / Cripton_Xpro_600 @Z39
+MDP,trigo,foliar,4,1,493,10.3,1.26,4081.03543743079,Custodia_T_800 @Z32 / Coverfull_Ace_500 @Z39
+MDP,trigo,foliar,4,2,517,10.9,1.26,4251.07973421927,Custodia_T_800 @Z32 / Coverfull_Ace_500 @Z39
+MDP,trigo,foliar,4,3,598,10.7,1.26,4928.1469176818,Custodia_T_800 @Z32 / Coverfull_Ace_500 @Z39
+MDP,trigo,foliar,5,1,526,9.7,1.26,4383.33333333333,Goldleaf_2000 @Z32_Z39
+MDP,trigo,foliar,5,2,510,8.5,1.26,4306.47840531561,Goldleaf_2000 @Z32_Z39
+MDP,trigo,foliar,5,3,467,11.9,1.26,3796.8530823182,Goldleaf_2000 @Z32_Z39
+MDP,trigo,foliar,6,1,512,11.4,1.26,4186.34182355113,Allegro_1000 @Z32 / Orquesta_1200 @Z39
+MDP,trigo,foliar,6,2,526,9.7,1.26,4383.33333333333,Allegro_1000 @Z32 / Orquesta_1200 @Z39
+MDP,trigo,foliar,6,3,502,11.1,1.26,4118.47545219638,Allegro_1000 @Z32 / Orquesta_1200 @Z39
+MDP,trigo,foliar,7,1,548,9.7,1.26,4566.66666666667,Artea_500 @Z32 / Miravis_200 + Elatus_500 @Z39
+MDP,trigo,foliar,7,2,511,9.4,1.26,4272.48062015504,Artea_500 @Z32 / Miravis_200 + Elatus_500 @Z39
+MDP,trigo,foliar,7,3,508,9.7,1.26,4233.33333333333,Artea_500 @Z32 / Miravis_200 + Elatus_500 @Z39
+MDP,trigo,foliar,8,1,505,11,1.26,4147.74824658546,Allegro_1000 @Z32 / Orquesta_1200 @Z39 / Starter_3000 @Z24
+MDP,trigo,foliar,8,2,569,10.6,1.26,4694.40753045404,Allegro_1000 @Z32 / Orquesta_1200 @Z39 / Starter_3000 @Z24
+MDP,trigo,foliar,8,3,571,10.7,1.26,4705.63861203396,Allegro_1000 @Z32 / Orquesta_1200 @Z39 / Starter_3000 @Z24
+MDP,trigo,foliar,9,1,572,9.9,1.26,4756.10926541159,Taser_Xpert_400 @Z32 / Excalia_Max_700 @Z39
+MDP,trigo,foliar,9,2,551,9.7,1.26,4591.66666666667,Taser_Xpert_400 @Z32 / Excalia_Max_700 @Z39
+MDP,trigo,foliar,9,3,486,9.9,1.26,4041.02990033223,Taser_Xpert_400 @Z32 / Excalia_Max_700 @Z39
+Tandil,cebada,foliar,1,3,,,,4950,Fidresa_900 @Z39
+Tandil,cebada,foliar,1,1,,,,5370,Fidresa_900 @Z39
+Tandil,cebada,foliar,1,2,,,,5636,Fidresa_900 @Z39
+Tandil,cebada,foliar,2,3,,,,5144,Cripton_Xpro_600 @Z39
+Tandil,cebada,foliar,2,1,,,,5376,Cripton_Xpro_600 @Z39
+Tandil,cebada,foliar,2,2,,,,5630,Cripton_Xpro_600 @Z39
+Tandil,cebada,foliar,3,3,,,,4660,Coverfull_Ace_500 @Z39
+Tandil,cebada,foliar,3,2,,,,5474,Coverfull_Ace_500 @Z39
+Tandil,cebada,foliar,3,1,,,,5908,Coverfull_Ace_500 @Z39
+Tandil,cebada,foliar,4,2,,,,4732,Goldleaf_2000 @Z39
+Tandil,cebada,foliar,4,3,,,,5015,Goldleaf_2000 @Z39
+Tandil,cebada,foliar,4,1,,,,5594,Goldleaf_2000 @Z39
+Tandil,cebada,foliar,5,1,,,,4878,Orquesta_1200 @Z39
+Tandil,cebada,foliar,5,2,,,,4880,Orquesta_1200 @Z39
+Tandil,cebada,foliar,5,3,,,,5066,Orquesta_1200 @Z39
+Tandil,cebada,foliar,6,3,,,,4637,Miravis_200 + Elatus_500 @Z39
+Tandil,cebada,foliar,6,2,,,,5160,Miravis_200 + Elatus_500 @Z39
+Tandil,cebada,foliar,6,1,,,,5632,Miravis_200 + Elatus_500 @Z39
+Tandil,cebada,foliar,7,1,,,,3836,Check
+Tandil,cebada,foliar,7,3,,,,3820,Check
+Tandil,cebada,foliar,7,3,,,,4096,Check
+Tandil,cebada,foliar,7,2,,,,4182,Check
+Tandil,cebada,foliar,7,2,,,,4770,Check
+Tandil,cebada,foliar,7,3,,,,4970,Check
+Tandil,cebada,foliar,7,2,,,,4974,Check
+Tandil,cebada,foliar,7,1,,,,5092,Check
+Tandil,cebada,foliar,7,1,,,,5992,Check
+Tandil,trigo,foliar,1,1,,,,4130,Fidresa_900 @Z39
+Tandil,trigo,foliar,1,2,,,,4850,Fidresa_900 @Z39
+Tandil,trigo,foliar,1,3,,,,3370,Fidresa_900 @Z39
+Tandil,trigo,foliar,2,1,,,,4562,Cripton_Xpro_600 @Z39
+Tandil,trigo,foliar,2,2,,,,4806,Cripton_Xpro_600 @Z39
+Tandil,trigo,foliar,2,3,,,,3680,Cripton_Xpro_600 @Z39
+Tandil,trigo,foliar,3,1,,,,4034,Coverfull_Ace_500 @Z39
+Tandil,trigo,foliar,3,2,,,,4592,Coverfull_Ace_500 @Z39
+Tandil,trigo,foliar,3,3,,,,3740,Coverfull_Ace_500 @Z39
+Tandil,trigo,foliar,4,1,,,,4020,Goldleaf_2000 @Z39
+Tandil,trigo,foliar,4,2,,,,4452,Goldleaf_2000 @Z39
+Tandil,trigo,foliar,4,3,,,,3664,Goldleaf_2000 @Z39
+Tandil,trigo,foliar,5,1,,,,4690,Orquesta_1200 @Z39
+Tandil,trigo,foliar,5,2,,,,4424,Orquesta_1200 @Z39
+Tandil,trigo,foliar,5,3,,,,4496,Orquesta_1200 @Z39
+Tandil,trigo,foliar,6,1,,,,4938,Miravis_200 + Elatus_500 @Z39
+Tandil,trigo,foliar,6,2,,,,4516,Miravis_200 + Elatus_500 @Z39
+Tandil,trigo,foliar,6,3,,,,3522,Miravis_200 + Elatus_500 @Z39
+Tandil,trigo,foliar,7,1,,,,4024,Excalia_Max_700 @Z39
+Tandil,trigo,foliar,7,2,,,,4874,Excalia_Max_700 @Z39
+Tandil,trigo,foliar,7,3,,,,3492,Excalia_Max_700 @Z39
+Tandil,trigo,foliar,8,1,,,,4752,Orquesta_1200 @Z39 / Starter_3000 @Z24
+Tandil,trigo,foliar,8,2,,,,4154,Orquesta_1200 @Z39 / Starter_3000 @Z24
+Tandil,trigo,foliar,8,3,,,,4460,Orquesta_1200 @Z39 / Starter_3000 @Z24
+Tandil,trigo,foliar,9,1,,,,4210,Check
+Tandil,trigo,foliar,9,2,,,,4805,Check
+Tandil,trigo,foliar,9,3,,,,4532,Check

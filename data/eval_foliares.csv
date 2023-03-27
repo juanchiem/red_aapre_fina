@@ -1,0 +1,49 @@
+cultivo,sitio,trt,bq,inc,sev,protec,prod
+cebada,MDP,1,1,100,7,foliar,Check
+cebada,MDP,2,1,60,3,foliar,Fidresa_900 @Z39
+cebada,MDP,3,1,60,2,foliar,Cripton_Xpro_600 @Z39
+cebada,MDP,4,1,40,2,foliar,Coverfull_Ace_500 @Z39
+cebada,MDP,5,1,50,3,foliar,Goldleaf_2000 @Z39
+cebada,MDP,6,1,40,2,foliar,Orquesta_1200 @Z39
+cebada,MDP,7,1,60,2,foliar,Miravis_200 + Elatus_500 @Z39
+cebada,MDP,8,1,70,3,foliar,Cripton_600 @Z39
+cebada,MDP,1,2,100,4,foliar,Check
+cebada,MDP,2,2,60,3,foliar,Fidresa_900 @Z39
+cebada,MDP,3,2,40,1,foliar,Cripton_Xpro_600 @Z39
+cebada,MDP,4,2,60,3,foliar,Coverfull_Ace_500 @Z39
+cebada,MDP,5,2,60,3,foliar,Goldleaf_2000 @Z39
+cebada,MDP,6,2,40,1,foliar,Orquesta_1200 @Z39
+cebada,MDP,7,2,40,1,foliar,Miravis_200 + Elatus_500 @Z39
+cebada,MDP,8,2,70,2,foliar,Cripton_600 @Z39
+cebada,MDP,1,3,100,5,foliar,Check
+cebada,MDP,2,3,60,2,foliar,Fidresa_900 @Z39
+cebada,MDP,3,3,50,2,foliar,Cripton_Xpro_600 @Z39
+cebada,MDP,4,3,60,2,foliar,Coverfull_Ace_500 @Z39
+cebada,MDP,5,3,50,2,foliar,Goldleaf_2000 @Z39
+cebada,MDP,6,3,50,1,foliar,Orquesta_1200 @Z39
+cebada,MDP,7,3,50,2,foliar,Miravis_200 + Elatus_500 @Z39
+cebada,MDP,8,3,60,2,foliar,Cripton_600 @Z39
+cebada,La Dulce,1,1,60,3,foliar,Check
+cebada,La Dulce,2,1,10,1,foliar,Fidresa_900 @Z39
+cebada,La Dulce,3,1,60,1,foliar,Cripton_Xpro_600 @Z39
+cebada,La Dulce,4,1,60,1,foliar,Coverfull_Ace_500 @Z39
+cebada,La Dulce,5,1,50,1,foliar,Goldleaf_2000 @Z39
+cebada,La Dulce,6,1,40,1,foliar,Orquesta_1200 @Z39
+cebada,La Dulce,7,1,50,1,foliar,Miravis_200 + Elatus_500 @Z39
+cebada,La Dulce,8,1,80,1,foliar,Cripton_600 @Z39
+cebada,La Dulce,5,2,40,1,foliar,Goldleaf_2000 @Z39
+cebada,La Dulce,7,2,50,1,foliar,Miravis_200 + Elatus_500 @Z39
+cebada,La Dulce,6,2,40,1,foliar,Orquesta_1200 @Z39
+cebada,La Dulce,8,2,70,1,foliar,Cripton_600 @Z39
+cebada,La Dulce,2,2,50,1,foliar,Fidresa_900 @Z39
+cebada,La Dulce,4,2,40,1,foliar,Coverfull_Ace_500 @Z39
+cebada,La Dulce,1,2,90,2,foliar,Check
+cebada,La Dulce,3,2,30,1,foliar,Cripton_Xpro_600 @Z39
+cebada,La Dulce,2,3,60,1,foliar,Fidresa_900 @Z39
+cebada,La Dulce,3,3,40,1,foliar,Cripton_Xpro_600 @Z39
+cebada,La Dulce,4,3,70,1,foliar,Coverfull_Ace_500 @Z39
+cebada,La Dulce,1,3,80,1,foliar,Check
+cebada,La Dulce,6,3,10,1,foliar,Orquesta_1200 @Z39
+cebada,La Dulce,7,3,60,1,foliar,Miravis_200 + Elatus_500 @Z39
+cebada,La Dulce,8,3,70,1,foliar,Cripton_600 @Z39
+cebada,La Dulce,5,3,40,1,foliar,Goldleaf_2000 @Z39
