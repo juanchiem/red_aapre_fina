@@ -4,6 +4,7 @@ project:
 execute:
   cache: false
   freeze: auto
+
 book:
   title: "Protección sanitaria de cereales de invierno"
   subtitle: "Sudeste de Buenos Aires - Campaña 2022"
@@ -11,8 +12,8 @@ book:
   page-footer: 
     border: false
     background: light
-    left: "Red protección sanitaria de cereales de invierno - Sudeste de Bs As"
-       
+    left: "Consultas sobre el análisis de datos y reporte en general escribir a edwardsmolina.juan@inta.gob.ar"
+    
   chapters:
     - index.qmd
     - meteo.qmd

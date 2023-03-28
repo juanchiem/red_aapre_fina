@@ -363,7 +363,7 @@ trigo_foliar %>%
 ```
 
 
-#### Modelos intra-sitios 
+### Análisis intra-sitio 
 
 (No se analiza globalmente el rendimiento ya que variaron las estrategias entre MdP y Tandil)
 
