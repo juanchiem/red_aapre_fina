@@ -1,0 +1,130 @@
+sitio,cultivo,prod,bq,kg_ha,inc,sev
+La Dulce,cebada,Check,1,3458.33333333333,60,3
+La Dulce,cebada,Check,3,3804.26356589147,80,1
+La Dulce,cebada,Check,2,4150,90,2
+La Dulce,cebada,Fidresa_900 @Z39,1,3916.66666666667,10,1
+La Dulce,cebada,Fidresa_900 @Z39,3,4158.33333333333,60,1
+La Dulce,cebada,Fidresa_900 @Z39,2,4358.33333333333,50,1
+La Dulce,cebada,Cripton_Xpro_600 @Z39,1,3600,60,1
+La Dulce,cebada,Cripton_Xpro_600 @Z39,2,4400,30,1
+La Dulce,cebada,Cripton_Xpro_600 @Z39,3,5341.66666666667,40,1
+La Dulce,cebada,Coverfull_Ace_500 @Z39,3,3966.66666666667,70,1
+La Dulce,cebada,Coverfull_Ace_500 @Z39,2,4650,40,1
+La Dulce,cebada,Coverfull_Ace_500 @Z39,1,4716.66666666667,60,1
+La Dulce,cebada,Goldleaf_2000 @Z39,2,3766.66666666667,40,1
+La Dulce,cebada,Goldleaf_2000 @Z39,3,4100,40,1
+La Dulce,cebada,Goldleaf_2000 @Z39,1,5000,50,1
+La Dulce,cebada,Orquesta_1200 @Z39,2,3791.66666666667,40,1
+La Dulce,cebada,Orquesta_1200 @Z39,3,4491.66666666667,10,1
+La Dulce,cebada,Orquesta_1200 @Z39,1,4883.33333333333,40,1
+La Dulce,cebada,Miravis_200 + Elatus_500 @Z39,2,3916.66666666667,50,1
+La Dulce,cebada,Miravis_200 + Elatus_500 @Z39,3,4933.33333333333,60,1
+La Dulce,cebada,Miravis_200 + Elatus_500 @Z39,1,5325,50,1
+La Dulce,cebada,Cripton_600 @Z39,3,3241.66666666667,70,1
+La Dulce,cebada,Cripton_600 @Z39,2,3941.66666666667,70,1
+La Dulce,cebada,Cripton_600 @Z39,1,4891.66666666667,80,1
+MDP,cebada,Check,2,4848.00664451827,100,4
+MDP,cebada,Check,1,4839.71945367294,100,7
+MDP,cebada,Check,3,4964.0273163529,100,5
+MDP,cebada,Fidresa_900 @Z39,1,5038.61203396087,60,3
+MDP,cebada,Fidresa_900 @Z39,3,5345.2380952381,60,2
+MDP,cebada,Fidresa_900 @Z39,2,4955.74012550757,60,3
+MDP,cebada,Cripton_600 @Z39,1,4881.1554078996,70,3
+MDP,cebada,Cripton_600 @Z39,3,4930.87855297158,60,2
+MDP,cebada,Cripton_600 @Z39,2,,70,2
+MDP,cebada,Coverfull_Ace_500 @Z39,3,5030.32484311554,60,2
+MDP,cebada,Coverfull_Ace_500 @Z39,2,5220.93023255814,60,3
+MDP,cebada,Coverfull_Ace_500 @Z39,1,5104.37430786268,40,2
+MDP,cebada,Goldleaf_2000 @Z39,1,4939.16574381691,50,3
+MDP,cebada,Goldleaf_2000 @Z39,3,5005.46327057955,50,2
+MDP,cebada,Goldleaf_2000 @Z39,2,5386.67404946475,60,3
+MDP,cebada,Orquesta_1200 @Z39,3,4922.59136212625,50,1
+MDP,cebada,Orquesta_1200 @Z39,2,5353.52528608343,40,1
+MDP,cebada,Orquesta_1200 @Z39,1,5492.2296050203,40,2
+MDP,cebada,Miravis_200 + Elatus_500 @Z39,1,5154.6327057955,60,2
+MDP,cebada,Miravis_200 + Elatus_500 @Z39,3,5361.81247692876,50,2
+MDP,cebada,Miravis_200 + Elatus_500 @Z39,2,5469.54595791805,40,1
+MDP,cebada,Cripton_Xpro_600 @Z39,3,4881.1554078996,50,2
+MDP,cebada,Cripton_Xpro_600 @Z39,1,5158.33333333333,60,2
+MDP,cebada,Cripton_Xpro_600 @Z39,2,5416.02067183463,40,1
+MDP,trigo,Check,1,3144.34293097084,,
+MDP,trigo,Check,2,2946.73311184939,,
+MDP,trigo,Check,3,3494.90586932447,,
+MDP,trigo,Fidresa_900 @Z32_Z39,1,4441.63898117387,,
+MDP,trigo,Fidresa_900 @Z32_Z39,2,3938.63049095607,,
+MDP,trigo,Fidresa_900 @Z32_Z39,3,3724.76005906238,,
+MDP,trigo,Cripton_600 @Z32 / Cripton_Xpro_600 @Z39,1,4988.74123292728,,
+MDP,trigo,Cripton_600 @Z32 / Cripton_Xpro_600 @Z39,2,4016.08527131783,,
+MDP,trigo,Cripton_600 @Z32 / Cripton_Xpro_600 @Z39,3,4506.45994832041,,
+MDP,trigo,Custodia_T_800 @Z32 / Coverfull_Ace_500 @Z39,1,4081.03543743079,,
+MDP,trigo,Custodia_T_800 @Z32 / Coverfull_Ace_500 @Z39,2,4251.07973421927,,
+MDP,trigo,Custodia_T_800 @Z32 / Coverfull_Ace_500 @Z39,3,4928.1469176818,,
+MDP,trigo,Goldleaf_2000 @Z32_Z39,1,4383.33333333333,,
+MDP,trigo,Goldleaf_2000 @Z32_Z39,2,4306.47840531561,,
+MDP,trigo,Goldleaf_2000 @Z32_Z39,3,3796.8530823182,,
+MDP,trigo,Allegro_1000 @Z32 / Orquesta_1200 @Z39,1,4186.34182355113,,
+MDP,trigo,Allegro_1000 @Z32 / Orquesta_1200 @Z39,2,4383.33333333333,,
+MDP,trigo,Allegro_1000 @Z32 / Orquesta_1200 @Z39,3,4118.47545219638,,
+MDP,trigo,Artea_500 @Z32 / Miravis_200 + Elatus_500 @Z39,1,4566.66666666667,,
+MDP,trigo,Artea_500 @Z32 / Miravis_200 + Elatus_500 @Z39,2,4272.48062015504,,
+MDP,trigo,Artea_500 @Z32 / Miravis_200 + Elatus_500 @Z39,3,4233.33333333333,,
+MDP,trigo,Allegro_1000 @Z32 / Orquesta_1200 @Z39 / Starter_3000 @Z24,1,4147.74824658546,,
+MDP,trigo,Allegro_1000 @Z32 / Orquesta_1200 @Z39 / Starter_3000 @Z24,2,4694.40753045404,,
+MDP,trigo,Allegro_1000 @Z32 / Orquesta_1200 @Z39 / Starter_3000 @Z24,3,4705.63861203396,,
+MDP,trigo,Taser_Xpert_400 @Z32 / Excalia_Max_700 @Z39,1,4756.10926541159,,
+MDP,trigo,Taser_Xpert_400 @Z32 / Excalia_Max_700 @Z39,2,4591.66666666667,,
+MDP,trigo,Taser_Xpert_400 @Z32 / Excalia_Max_700 @Z39,3,4041.02990033223,,
+Tandil,cebada,Fidresa_900 @Z39,3,4950,,
+Tandil,cebada,Fidresa_900 @Z39,1,5370,,
+Tandil,cebada,Fidresa_900 @Z39,2,5636,,
+Tandil,cebada,Cripton_Xpro_600 @Z39,3,5144,,
+Tandil,cebada,Cripton_Xpro_600 @Z39,1,5376,,
+Tandil,cebada,Cripton_Xpro_600 @Z39,2,5630,,
+Tandil,cebada,Coverfull_Ace_500 @Z39,3,4660,,
+Tandil,cebada,Coverfull_Ace_500 @Z39,2,5474,,
+Tandil,cebada,Coverfull_Ace_500 @Z39,1,5908,,
+Tandil,cebada,Goldleaf_2000 @Z39,2,4732,,
+Tandil,cebada,Goldleaf_2000 @Z39,3,5015,,
+Tandil,cebada,Goldleaf_2000 @Z39,1,5594,,
+Tandil,cebada,Orquesta_1200 @Z39,1,4878,,
+Tandil,cebada,Orquesta_1200 @Z39,2,4880,,
+Tandil,cebada,Orquesta_1200 @Z39,3,5066,,
+Tandil,cebada,Miravis_200 + Elatus_500 @Z39,3,4637,,
+Tandil,cebada,Miravis_200 + Elatus_500 @Z39,2,5160,,
+Tandil,cebada,Miravis_200 + Elatus_500 @Z39,1,5632,,
+Tandil,cebada,Check,1,3836,,
+Tandil,cebada,Check,3,3820,,
+Tandil,cebada,Check,3,4096,,
+Tandil,cebada,Check,2,4182,,
+Tandil,cebada,Check,2,4770,,
+Tandil,cebada,Check,3,4970,,
+Tandil,cebada,Check,2,4974,,
+Tandil,cebada,Check,1,5092,,
+Tandil,cebada,Check,1,5992,,
+Tandil,trigo,Fidresa_900 @Z39,1,4130,,
+Tandil,trigo,Fidresa_900 @Z39,2,4850,,
+Tandil,trigo,Fidresa_900 @Z39,3,3370,,
+Tandil,trigo,Cripton_Xpro_600 @Z39,1,4562,,
+Tandil,trigo,Cripton_Xpro_600 @Z39,2,4806,,
+Tandil,trigo,Cripton_Xpro_600 @Z39,3,3680,,
+Tandil,trigo,Coverfull_Ace_500 @Z39,1,4034,,
+Tandil,trigo,Coverfull_Ace_500 @Z39,2,4592,,
+Tandil,trigo,Coverfull_Ace_500 @Z39,3,3740,,
+Tandil,trigo,Goldleaf_2000 @Z39,1,4020,,
+Tandil,trigo,Goldleaf_2000 @Z39,2,4452,,
+Tandil,trigo,Goldleaf_2000 @Z39,3,3664,,
+Tandil,trigo,Orquesta_1200 @Z39,1,4690,,
+Tandil,trigo,Orquesta_1200 @Z39,2,4424,,
+Tandil,trigo,Orquesta_1200 @Z39,3,4496,,
+Tandil,trigo,Miravis_200 + Elatus_500 @Z39,1,4938,,
+Tandil,trigo,Miravis_200 + Elatus_500 @Z39,2,4516,,
+Tandil,trigo,Miravis_200 + Elatus_500 @Z39,3,3522,,
+Tandil,trigo,Excalia_Max_700 @Z39,1,4024,,
+Tandil,trigo,Excalia_Max_700 @Z39,2,4874,,
+Tandil,trigo,Excalia_Max_700 @Z39,3,3492,,
+Tandil,trigo,Orquesta_1200 @Z39 / Starter_3000 @Z24,1,4752,,
+Tandil,trigo,Orquesta_1200 @Z39 / Starter_3000 @Z24,2,4154,,
+Tandil,trigo,Orquesta_1200 @Z39 / Starter_3000 @Z24,3,4460,,
+Tandil,trigo,Check,1,4210,,
+Tandil,trigo,Check,2,4805,,
+Tandil,trigo,Check,3,4532,,

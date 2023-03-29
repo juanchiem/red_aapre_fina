@@ -1,15 +1,9 @@
 - Coordinación general: Segundo Fernandez Páez (Coordinador de regionales AAPRESID Nodo Sur y Oeste Medanoso)
 - Coordinación técnica: Juan Edwards (INTA Balcarce)
 
-
-::: {layout-nrow=2}
-
 ![](figs/0_aapre_seba.png){fig-align="center" heigth="50"}
 
 ![](figs/0_inta.png){fig-align="center" width="80"}
-
-:::
-
 
 # Sitios experimentales {.unnumbered}
 

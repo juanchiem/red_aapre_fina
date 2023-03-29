@@ -12,7 +12,17 @@ book:
   page-footer: 
     border: false
     background: light
-    left: "Consultas sobre el análisis de datos y reporte en general: edwardsmolina.juan@inta.gob.ar\n Actualizado: `r format(Sys.time(), '%d/%m/%y')`"
+    left: "Consultas sobre el análisis de datos y reporte en general: edwardsmolina.juan@inta.gob.ar"
+  sidebar:
+    pinned: true
+    tools:
+          - icon: save
+            menu:
+              - text: Data curasemillas
+                url:  "data/cura_dat.csv"
+              - text: Data foliares
+                url:  "data/foliar_dat.csv"  
+  downloads: [pdf]
     
   chapters:
     - index.qmd
@@ -27,3 +37,4 @@ format:
     theme: 
       light: cosmo
       dark: superhero
+

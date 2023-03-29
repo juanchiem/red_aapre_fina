@@ -117,7 +117,9 @@ cober_dat %>%
 ```
 
 ```{r}
-rinde_cura <- rio::import("data/rinde_cura_dat.csv")
+rinde_cura <- rio::import("data/rinde_cura_dat.csv") %>% 
+  mutate(cultivo=stringr::str_to_sentence(cultivo))
+
 rinde_cura %>% 
   as_hux() %>% 
   set_font_size(9) %>% 
@@ -136,10 +138,11 @@ cober_dat %>%
              sitio=="Tandil" &  cultivo == "Cebada" ~ bq0/2,
              sitio!="Tandil" ~ bq0 )) %>% 
    arrange(desc(sitio), cultivo, prod, bq) %>% 
-  select(cultivo, sitio, prod, bq, cobertura=val) 
-
+  select(cultivo, sitio, prod, bq, cobertura=val) %>% 
+  # janitor::compare_df_cols(rinde_cura)
+  left_join(rinde_cura) %>% 
+  rio::export("data/cura_dat.csv")
 ```
-
 
 ## Foliares
 
@@ -152,12 +155,11 @@ press_upa <- rio::import("data/eval_foliares.xls", sheet=2)
 
 ```{r}
 # trt_list %>% data.frame %>% arrange(sitio, cultivo, protec,trt)
-rio::import("data/eval_foliares.xls", sheet=1) %>%
-  left_join(trt_list %>% filter(protec=="foliar")) %>%
-  rio::export("data/eval_foliares.csv")
+# rio::import("data/eval_foliares.xls", sheet=1) %>%
+#   left_join(trt_list %>% filter(protec=="foliar")) %>%
+#   rio::export("data/eval_foliares.csv")
 eval <- rio::import("data/eval_foliares.csv") 
 ```
-
 
 ### Rendimiento
 
@@ -190,7 +192,6 @@ meta_foliar <-  rio::import(file = "data/meta_foliares.csv")
 #   rio::export(file="data/rinde_foliares.csv")
 ```
 
-
 ```{r}
 dat <-  rio::import(file="data/rinde_foliares.csv")
 dat %>% 
@@ -201,3 +202,13 @@ dat %>%
   set_tb_padding(.05)%>% 
   set_number_format(0)
 ```
+
+```{r}
+dat %>% select(sitio, cultivo, prod, bq, kg_ha) %>% 
+  # janitor::compare_df_cols(
+  left_join(
+    eval %>% select(sitio, cultivo, prod, bq, inc, sev)
+    ) %>% 
+    rio::export("data/foliar_dat.csv")
+```
+
