@@ -1,0 +1,32 @@
+# Condiciones meteorológicas {.unnumbered}
+
+La campaña se caracterizó por un déficit hídrico generalizado en toda la zona productora. Esto puede apreciarse en las figuras de los balances de agua de las distitnas localidades en las que se desarrollaron los ensayos, en donde los almacenajes de los tres sitios se vieron por debajo de la carga normal de los perfiles. Esta situación fue más severa en suelos someros (como el caso de La Dulce), lo cual se vió reflejado desde la implantación y durante todo el desarrollo del cultivo, con canopeos menos densos en comparación con Tandil y Mar del Plata. Esta última localidad, fue la menos perjudicada de las tres. El pronunciado stress hídrico en el sitio experimental de La Dulce determinó la cancelación a medio término del ensayo de trigo, ya que no solo el cultivo no logró cubrir el surco, si no que el impacto de las heladas afectó gravemente el área experimental post aplicacion de los tratamientos.
+
+En cuanto a la evolución de temperaturas, se registraron heladas tardías en toda la región. Particularmente en Tandil, sumado al estado hídrico crítico, las bajas temperaturas perjudicaron el llenado de granos. Esto se ve reflejado en el elevado coeficiente de variación del rendimiento, por lo cual se sugiere tomar con precaución los datos de rinde del sitio expermiental.
+
+* Tandil 
+
+::: {layout-ncol=2}
+![](plots/TAND_TL.jpg)
+
+![](plots/tandil_temp.png)
+:::
+
+* Mar del Plata
+
+::: {layout-ncol=2}
+![](plots/MDQ_TL.jpg) 
+
+![](plots/mdp_temp.png)
+:::
+
+* La Dulce
+
+::: {layout-ncol=2}
+![](plots/DULCE_TL.jpg) 
+
+![](plots/juarez_temp.png) 
+:::
+
+Balance hídrico y evolución de temperaturas obtenido del sitio web de la Oficina de Riesgo Agropecuario [ORA](http://www.ora.gob.ar/camp_actual_reservas.php)
+
