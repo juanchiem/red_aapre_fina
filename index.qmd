@@ -1,6 +1,15 @@
-- Coordinación general: Segundo Fernandez Páez (Coordinador de regionales AAPRESID Nodo Sur)
+- Coordinación general: Segundo Fernandez Páez (Coordinador de regionales AAPRESID Nodo Sur y Oeste Medanoso)
 - Coordinación técnica: Juan Edwards (INTA Balcarce)
-- Regionales Aapresid participantes: Juan Manuel Fangio, Necochea y Tandilia
+
+
+::: {layout-nrow=2}
+
+![](figs/0_aapre_seba.png){fig-align="center" heigth="50"}
+
+![](figs/0_inta.png){fig-align="center" width="80"}
+
+:::
+
 
 # Sitios experimentales {.unnumbered}
 
@@ -11,4 +20,10 @@
 * MDP: [Ea. El Silencio - UPA](https://goo.gl/maps/b9GsTpwBpxScjFA26)
 
 * Tandil: [Ea. Las Marias](https://maps.app.goo.gl/MKWH8AD4Me75CP1DA) 
+
+
+## Empresas participantes {.unnumbered}
+
+![](figs/patrocinantes.png){fig-align="center"}
+
 

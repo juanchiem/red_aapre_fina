@@ -12,7 +12,7 @@ book:
   page-footer: 
     border: false
     background: light
-    left: "Consultas sobre el análisis de datos y reporte en general escribir a edwardsmolina.juan@inta.gob.ar"
+    left: "Consultas sobre el análisis de datos y reporte en general: edwardsmolina.juan@inta.gob.ar\n Actualizado: `r format(Sys.time(), '%d/%m/%y')`"
     
   chapters:
     - index.qmd

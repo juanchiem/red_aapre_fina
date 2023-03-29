@@ -126,6 +126,21 @@ rinde_cura %>%
   set_number_format(0)
 ```
 
+```{r}
+cober_dat %>% 
+  # arrange(cultivo, prod, sitio) %>% 
+  mutate(bq0=if_else(sitio=="Tandil", x, y)) %>% 
+  mutate(bq=
+           case_when(
+             sitio=="Tandil" &  cultivo == "Trigo" ~ (bq0/2)+.5,
+             sitio=="Tandil" &  cultivo == "Cebada" ~ bq0/2,
+             sitio!="Tandil" ~ bq0 )) %>% 
+   arrange(desc(sitio), cultivo, prod, bq) %>% 
+  select(cultivo, sitio, prod, bq, cobertura=val) 
+
+```
+
+
 ## Foliares
 
 ### Sanidad
