@@ -9,8 +9,7 @@ dat <-  rio::import(file="data/rinde_foliares.csv")
 ```
 
 ```{r}
-meta_foliar <-  rio::import(file = "data/meta_foliares.csv")
-meta_foliar %>% 
+rio::import(file = "data/meta_foliares.csv") %>% 
   arrange(Cultivo) %>% 
   as_hux() %>% 
   set_font_size(10) %>% 
