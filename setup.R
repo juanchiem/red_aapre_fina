@@ -21,3 +21,4 @@ asin_tran <- make.tran("asin.sqrt", 100)
 
 # quarto::quarto_render("document.qmd") # defaults to html
 # usethis::browse_github()
+# tinytex::install_tinytex(repository = "http://mirrors.tuna.tsinghua.edu.cn/CTAN/", version = "latest")

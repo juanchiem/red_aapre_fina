@@ -22,13 +22,12 @@ book:
                 url:  "data/cura_dat.csv"
               - text: Data foliares
                 url:  "data/foliar_dat.csv"  
-  downloads: [pdf]
-    
   chapters:
     - index.qmd
     - meteo.qmd
     - cura.qmd
     - foliares.qmd
+    - conclusiones.qmd
 
 format:
   html:

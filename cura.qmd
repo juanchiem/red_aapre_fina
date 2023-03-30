@@ -72,7 +72,9 @@ cober_dat %>%
   geom_boxploth(aes(y=.02), width=.01, fill="blue", alpha=.2)+
   geom_rug(aes(val, y = NULL))+
   stat_summaryh(fun.x=median, geom="text", aes(label=round(..x..), y=.01)) +
-  facet_grid(sitio ~ cultivo)
+  facet_grid(sitio ~ cultivo) +
+  labs(x= "Cobertura (%)", y = "")
+  
 ```
 
 ```{r cober_plot, fig.width=8, fig.height=6}
