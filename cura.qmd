@@ -63,7 +63,7 @@ Tandil y MdP tuvieron la misma lista de tratamientos y en ambos casos la siembra
 
 Con el objetivo de tener una variable de desarrollo vegetativo se evalúo el % de cobertura con app canopeo.
 
-```{r}
+```{r fig.width=4, fig.height=4}
 cober_dat %>% 
   ggplot()+
   aes(x = val, y = after_stat(count / sum(count))) +
@@ -99,7 +99,11 @@ last_plot() %>%
   ggsave(filename = "plots/cobertura.jpg", w=8, h=6, units="cm", scale=3)
 ```
 
+<<<<<<< HEAD
 Puede notarse un mayor % de cobertura general en Tandil, luego en La Dulce y finalmente en MdP. Sin embargo, como se mencionó en la descripción meteorológica el sitio de MDP tuvo las mejores condiciones para desarrollo vegetativo a diferencia de Tandil y La Dulce que fueron limitados por agua. Estas discrepancias pueden deberse al diferente estado fenológico de la toma del dato de cobertura.
+=======
+La diferencia entre sitios está puede deberse al diferente estado fenológico de la toma del dato. Ya que como se planteó, el sitio de MDP tuvo el mayor vigor en el desarrollo y Tandil y La Dulce fueron limitados por agua. 
+>>>>>>> a7651bcfe198052a96333d09f109bff3cf5a786c
 
 ### Análisis individual intra-sitio {.unnumbered}
 
@@ -111,7 +115,6 @@ A continuación se presenta los análisis de varianza por ensayo con la variable
 
 ```{r}
 cober_dat %>% 
-  filter(cultivo =="Cebada") %>% 
   group_by(sitio) %>%
   nest() %>% 
   mutate(model = map(data, ~aov(val ~ prod, data = .x)),
@@ -121,7 +124,8 @@ cober_dat %>%
   as_hux() %>% 
   set_font_size(10) %>% 
   theme_article() %>% 
-  set_tb_padding(.1)
+  set_tb_padding(.1) -> cober_dat_cv
+cober_dat_cv
 ```
 
 ```{r}
@@ -138,7 +142,8 @@ cober_dat %>%
   
   unnest(clds) %>% 
   dplyr::select(!c(data, model, emms)) %>% 
-    as_hux() %>% 
+  dplyr::select(Sitio=sitio, Tratamiento=prod, Cobertura=response, Tukey_5= .group) %>% 
+  as_hux() %>% 
   set_font_size(10) %>% 
   theme_article() %>% 
   set_tb_padding(.1)
@@ -175,17 +180,19 @@ cober_dat %>%
   
   unnest(clds) %>% 
   dplyr::select(!c(data, model, emms)) %>% 
-    as_hux() %>% 
+  dplyr::select(Sitio=sitio, Tratamiento=prod, Cobertura=response, Tukey_5= .group)   %>%   as_hux() %>% 
   set_font_size(10) %>% 
   theme_article() %>% 
   set_tb_padding(.1)
 ```
 
-
 ### Análisis global por cultivo {.unnumbered}
 
+Incluyendo solo los sitios de MdP y Tandil (que incluian todos los tratamientos) 
+
 ```{r}
-cober_dat %>%
+cober_dat %>% # distinct(sitio)
+  filter(sitio!="La Dulce") %>% 
   group_by(cultivo) %>%
   nest() %>% 
   mutate(model = map(data, 
@@ -196,13 +203,14 @@ cober_dat %>%
   
   unnest(clds) %>% 
   dplyr::select(!c(data, model, emms)) %>% 
+  dplyr::select(Cultivo=cultivo, Tratamiento=prod, Cobertura=response, Tukey_5= .group) %>% 
   as_hux() %>% 
   set_font_size(10) %>% 
   theme_article() %>% 
-  set_tb_padding(.1) 
+  set_tb_padding(.1) # %>% quick_docx(file="tables/cobertura_global.docx")
 ```
 
-En consistencia con lo observado a campo, no se detectaron diferencias estadísticas en el % de cobertura entre los tratamientos, ni a nivel individual intra-ensayo como a nivel global inter-ensayos
+No se detectaron diferencias estadísticas en el % de cobertura entre los tratamientos, ni a nivel individual intra-ensayo como a nivel global inter-ensayos
 
 ## Rinde
 
@@ -210,22 +218,9 @@ En consistencia con lo observado a campo, no se detectaron diferencias estadíst
 
 ```{r}
 rinde_cura <- rio::import("data/rinde_cura_dat.csv")
-rinde_cura %>%
-  filter(cultivo=="cebada") %>% 
-  group_by(sitio) %>%
-  nest() %>% 
-  mutate(model = map(data, ~aov(kg_ha ~ prod + bq, data = .x)),
-         `CV` = map(model, ~ round(agricolae::cv.model(.x),1)) %>%
-           sprintf("%0.1f%%", .))%>% 
-  unnest(`CV`) %>%
-  dplyr::select(!c(data, model))  %>%
-    as_hux() %>% 
-  set_font_size(10) %>% 
-  theme_article() %>% 
-  set_tb_padding(.1)
 ```
 
-```{r}
+```{r fig.width=4, fig.height=4}
 rinde_cura %>% 
   filter(cultivo=="cebada") %>% 
   ggplot()+
@@ -239,7 +234,7 @@ rinde_cura %>%
   labs(y="")
 ```
 
-```{r fig.width=8, fig.height=6}
+```{r fig.width=8, fig.height=5}
 rinde_cura %>%   
   filter(cultivo=="cebada") %>% 
   mutate(cultivo = stringr::str_to_sentence(cultivo)) %>%
@@ -263,15 +258,27 @@ last_plot() %>%
 
 ```{r}
 rinde_cura %>%
+ filter(cultivo=="cebada") %>% 
+  group_by(sitio) %>%
+  nest() %>% 
+  mutate(model = map(data, ~aov(kg_ha ~ prod + bq, data = .x)),
+         `CV` = map(model, ~ round(agricolae::cv.model(.x),1)) %>%
+           sprintf("%0.1f%%", .))%>% 
+  unnest(`CV`) %>%
+  dplyr::select(!c(data, model))  -> rinde_cura_cv
+
+
+rinde_cura %>%
   filter(cultivo=="cebada") %>% 
   group_by(sitio) %>%
   group_modify(~ broom::tidy(car::Anova(lmer(kg_ha ~ prod +(1|bq), data = .x)))) %>%
   mutate(p.value = scales::pvalue(p.value, add_p = TRUE)) %>% 
-    as_hux() %>% 
+  left_join(rinde_cura_cv ) %>% 
+  as_hux() %>% 
   set_font_size(10) %>% 
   theme_article() %>% 
   set_tb_padding(.1)
-  
+
 rinde_cura %>%
   filter(cultivo=="cebada") %>% 
   group_by(sitio) %>%
@@ -295,23 +302,7 @@ rinde_cura %>%
 
 ### Trigo
 
-```{r}
-rinde_cura %>%
-  filter(cultivo=="trigo") %>% 
-  group_by(sitio) %>%
-  nest() %>% 
-  mutate(model = map(data, ~aov(kg_ha ~ prod + bq, data = .x)),
-         `CV` = map(model, ~ round(agricolae::cv.model(.x),1)) %>%
-           sprintf("%0.1f%%", .))%>% 
-  unnest(`CV`) %>%
-  dplyr::select(!c(data, model))  %>%
-    as_hux() %>% 
-  set_font_size(10) %>% 
-  theme_article() %>% 
-  set_tb_padding(.1)
-```
-
-```{r}
+```{r fig.width=4, fig.height=4}
 rinde_cura %>% 
   filter(cultivo=="trigo") %>% 
   ggplot()+
@@ -345,20 +336,31 @@ last_plot() %>%
   ggsave(filename = "plots/rinde_semilla_trigo_.jpg", w=8, h=6, units="cm", scale=3)
 ```
 
-#### Análisis intra-sitio {.unnumbered}
+### Análisis intra-sitio {.unnumbered}
 
 ```{r}
 rinde_cura %>%
   filter(cultivo=="trigo") %>% 
   group_by(sitio) %>%
+  nest() %>% 
+  mutate(model = map(data, ~aov(kg_ha ~ prod + bq, data = .x)),
+         `CV` = map(model, ~ round(agricolae::cv.model(.x),1)) %>%
+           sprintf("%0.1f%%", .))%>% 
+  unnest(`CV`) %>%
+  dplyr::select(!c(data, model)) ->rinde_cura_tr_cv
+
+
+rinde_cura %>%
+  filter(cultivo=="trigo") %>% 
+  group_by(sitio) %>%
   group_modify(~ broom::tidy(car::Anova(lmer(kg_ha ~ prod +(1|bq), data = .x)))) %>%
-  mutate(p.value = scales::pvalue(p.value, add_p = TRUE)) %>% 
+  mutate(p.value = scales::pvalue(p.value, add_p = TRUE)) %>%
+  left_join(rinde_cura_tr_cv) %>% 
   as_hux() %>% 
   set_font_size(10) %>% 
   theme_article() %>% 
   set_tb_padding(.1)
   
-
 rinde_cura %>%
   filter(cultivo=="trigo") %>% 
   group_by(sitio) %>%
