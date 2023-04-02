@@ -99,6 +99,8 @@ last_plot() %>%
   ggsave(filename = "plots/cobertura.jpg", w=8, h=6, units="cm", scale=3)
 ```
 
+Puede notarse un mayor % de cobertura general en Tandil, luego en La Dulce y finalmente en MdP. Sin embargo, como se mencionó en la descripción meteorológica el sitio de MDP tuvo las mejores condiciones para desarrollo vegetativo a diferencia de Tandil y La Dulce que fueron limitados por agua. Estas discrepancias pueden deberse al diferente estado fenológico de la toma del dato de cobertura.
+
 ### Análisis individual intra-sitio {.unnumbered}
 
 Se observó que la variabilidad intra-ensayo no fue alta expresada mediante el coeficiente de variación (CV < 10%)
