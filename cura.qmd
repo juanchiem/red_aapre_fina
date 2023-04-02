@@ -99,11 +99,7 @@ last_plot() %>%
   ggsave(filename = "plots/cobertura.jpg", w=8, h=6, units="cm", scale=3)
 ```
 
-<<<<<<< HEAD
 Puede notarse un mayor % de cobertura general en Tandil, luego en La Dulce y finalmente en MdP. Sin embargo, como se mencionó en la descripción meteorológica el sitio de MDP tuvo las mejores condiciones para desarrollo vegetativo a diferencia de Tandil y La Dulce que fueron limitados por agua. Estas discrepancias pueden deberse al diferente estado fenológico de la toma del dato de cobertura.
-=======
-La diferencia entre sitios está puede deberse al diferente estado fenológico de la toma del dato. Ya que como se planteó, el sitio de MDP tuvo el mayor vigor en el desarrollo y Tandil y La Dulce fueron limitados por agua. 
->>>>>>> a7651bcfe198052a96333d09f109bff3cf5a786c
 
 ### Análisis individual intra-sitio {.unnumbered}
 
@@ -278,7 +274,10 @@ rinde_cura %>%
   set_font_size(10) %>% 
   theme_article() %>% 
   set_tb_padding(.1)
+```
 
+
+```{r}
 rinde_cura %>%
   filter(cultivo=="cebada") %>% 
   group_by(sitio) %>%
@@ -290,11 +289,15 @@ rinde_cura %>%
                  rename(kg_ha = estimate) %>%
                  mutate_if(is.character, as.factor)
                ) %>% 
-  dplyr::select(-std.error, -df, -".group") %>% 
-    as_hux() %>% 
+  dplyr::select(-std.error, -df, -".group") -> rinde_cura_res  
+
+rinde_cura_res %>%
+  rename(Trat=prod, Sitio=sitio) %>% 
+  as_hux() %>% 
   set_font_size(10) %>% 
   theme_article() %>% 
-  set_tb_padding(.1)
+  set_tb_padding(.1) %>% 
+  set_number_format(0)
 ```
 
 > No se observaron diferencias significativas entre los tratamientos. Solo se realizó análisis individual debido a la diferencia entre lista de tratamientos entre La Dulce y Mar del Plata y la alta heterogeneidad del rendimiento en el sitio de Tandil. 
@@ -349,7 +352,6 @@ rinde_cura %>%
   unnest(`CV`) %>%
   dplyr::select(!c(data, model)) ->rinde_cura_tr_cv
 
-
 rinde_cura %>%
   filter(cultivo=="trigo") %>% 
   group_by(sitio) %>%
@@ -373,14 +375,23 @@ rinde_cura %>%
                  rename(kg_ha = estimate) %>%
                  mutate_if(is.character, as.factor)
                ) %>% 
-  dplyr::select(-std.error, -df, -".group") %>% 
-    as_hux() %>% 
+  dplyr::select(-std.error, -df, -".group") -> rinde_cura_trigo_res
+
+rinde_cura_trigo_res %>% 
+  group_by(sitio) %>% 
+  mutate(test_kg_ha = ifelse(sitio!="La Dulce", 
+                             kg_ha[prod == "CHECK"], 
+                             NA)) %>% 
+  mutate(dif_kg = kg_ha- test_kg_ha,
+         `dif_%` = (kg_ha/test_kg_ha - 1) * 100) %>%   
+  rename(Sitio=sitio, Trat=prod) %>% 
+  as_hux() %>% 
   set_font_size(10) %>% 
   theme_article() %>% 
   set_tb_padding(.1) %>% 
-  set_number_format(1)
+  set_number_format(0)
 ```
 
-> Sin diferencias entre los tratamientos a nivel de ensayo individual e imposibilidad de analisis global entre los sitios por los motivos ya mencionados. 
+> A pesar de detectarse diferencias entre los tratamientos a nivel de ensayo individual se estimaron diferencias de mas de 380 kg/ha, valores que superan ampliamente los costos de las tecnologias evaluadas. 
 
 

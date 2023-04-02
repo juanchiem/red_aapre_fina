@@ -419,5 +419,5 @@ trigo_foliar_tab %>%
   set_number_format(1)
 ```
 
-> En Tandil no se observaron diferencias significativas entre los tratamientos. 
+> En Tandil no se observaron diferencias significativas entre los tratamientos. Vale recordar la misa consideracion que en el analisis de rendimiento de los ensayos de curasemillas: las respuestas medias de varios tratamientos superaron ampliamente los costos de su adopción. 
 
