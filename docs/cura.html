@@ -24,6 +24,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <link href="./foliares.html" rel="next">
 <link href="./meteo.html" rel="prev">
 <script src="site_libs/clipboard/clipboard.min.js"></script>
@@ -151,8 +152,10 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#análisis-intra-sitio" id="toc-análisis-intra-sitio" class="nav-link" data-scroll-target="#análisis-intra-sitio">Análisis intra-sitio</a></li>
   </ul></li>
-  <li><a href="#trigo" id="toc-trigo" class="nav-link" data-scroll-target="#trigo"><span class="header-section-number">1.2.2</span> Trigo</a></li>
+  <li><a href="#trigo" id="toc-trigo" class="nav-link" data-scroll-target="#trigo"><span class="header-section-number">1.2.2</span> Trigo</a>
+  <ul>
   <li><a href="#análisis-intra-sitio-1" id="toc-análisis-intra-sitio-1" class="nav-link" data-scroll-target="#análisis-intra-sitio-1">Análisis intra-sitio</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -386,12 +389,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Con el objetivo de tener una variable de desarrollo vegetativo se evalúo el % de cobertura con app canopeo.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="cura_files/figure-html/unnamed-chunk-6-1.png" class="quarto-discovered-preview-image img-fluid" width="384"></p>
-</div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="cura_files/figure-html/cober_plot-1.png" class="img-fluid" width="768"></p>
+<p><img src="cura_files/figure-html/cober_plot-1.png" class="quarto-discovered-preview-image img-fluid" width="768"></p>
 </div>
 </div>
 <p>Puede notarse un mayor % de cobertura general en Tandil, luego en La Dulce y finalmente en MdP. Sin embargo, como se mencionó en la descripción meteorológica el sitio de MDP tuvo las mejores condiciones para desarrollo vegetativo a diferencia de Tandil y La Dulce que fueron limitados por agua. Estas discrepancias pueden deberse al diferente estado fenológico de la toma del dato de cobertura.</p>
@@ -894,9 +892,13 @@ ul.task-list li input[type="checkbox"] {
 <h2 data-number="1.2" class="anchored" data-anchor-id="rinde"><span class="header-section-number">1.2</span> Rinde</h2>
 <section id="cebada" class="level3" data-number="1.2.1">
 <h3 data-number="1.2.1" class="anchored" data-anchor-id="cebada"><span class="header-section-number">1.2.1</span> Cebada</h3>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<p><img src="cura_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="384"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="cura_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
 </div>
 </div>
 <div class="cell">
@@ -957,161 +959,230 @@ ul.task-list li input[type="checkbox"] {
 <td data-quarto-table-cell-role="th" style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: bold; font-size: 10pt;">Trat</td>
 <td data-quarto-table-cell-role="th" style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: bold; font-size: 10pt;">kg_ha</td>
 <td data-quarto-table-cell-role="th" style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: bold; font-size: 10pt;">conf.low</td>
-<td data-quarto-table-cell-role="th" style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: bold; font-size: 10pt;">conf.high</td>
+<td data-quarto-table-cell-role="th" style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: bold; font-size: 10pt;">conf.high</td>
+<td data-quarto-table-cell-role="th" style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: bold; font-size: 10pt;">test_kg_ha</td>
+<td data-quarto-table-cell-role="th" style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: bold; font-size: 10pt;">dif_kg</td>
+<td data-quarto-table-cell-role="th" style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0.4pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: bold; font-size: 10pt;">dif_%</td>
 </tr>
 <tr class="even">
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 0pt; font-weight: normal; font-size: 10pt;">La Dulce</td>
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">SISTIVA_PREMIS + ALZ_12051</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">3958</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">3091</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">4826</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">4826</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;"></td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;"></td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 0pt; font-weight: normal; font-size: 10pt;">La Dulce</td>
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">RIZODERMA_SX + VITAGROW + STZN</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">3752</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">2884</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">4619</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">4619</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;"></td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;"></td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 0pt; font-weight: normal; font-size: 10pt;">La Dulce</td>
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">SISTIVA_PREMIS</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">3731</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">2863</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">4598</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">4598</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;"></td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;"></td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 0pt; font-weight: normal; font-size: 10pt;">La Dulce</td>
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">VIBRANCE_INTEGRAL</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">3711</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">2843</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">4579</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">4579</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;"></td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;"></td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 0pt; font-weight: normal; font-size: 10pt;">La Dulce</td>
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">RANCONA_TRIO_400</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">3698</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">2830</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">4566</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">4566</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;"></td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;"></td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 0pt; font-weight: normal; font-size: 10pt;">La Dulce</td>
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">RIZODERMA_SX</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">3683</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">2816</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">4551</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">4551</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;"></td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;"></td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 0pt; font-weight: normal; font-size: 10pt;">MDP</td>
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">SISTIVA_PREMIS</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5333</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">4812</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5854</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5854</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5035</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">297</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">6</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 0pt; font-weight: normal; font-size: 10pt;">MDP</td>
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">RANCONA_TRIO_400</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5210</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">4689</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5731</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5731</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5035</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">175</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">3</td>
 </tr>
 <tr class="even">
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 0pt; font-weight: normal; font-size: 10pt;">MDP</td>
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">RIZODERMA_SX + VITAGROW + STZN</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5195</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">4674</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5716</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5716</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5035</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">160</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">3</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 0pt; font-weight: normal; font-size: 10pt;">MDP</td>
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">RIZODERMA_SX</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5133</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">4612</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5653</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5653</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5035</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">97</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">2</td>
 </tr>
 <tr class="even">
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 0pt; font-weight: normal; font-size: 10pt;">MDP</td>
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">SISTIVA_PREMIS + ALZ_12051</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5043</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">4523</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5564</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5564</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5035</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">8</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">0</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 0pt; font-weight: normal; font-size: 10pt;">MDP</td>
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">CURACYT</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5039</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">4519</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5560</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5560</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5035</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">4</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">0</td>
 </tr>
 <tr class="even">
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 0pt; font-weight: normal; font-size: 10pt;">MDP</td>
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">CHECK</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5035</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">4514</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5556</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5556</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5035</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">0</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">0</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 0pt; font-weight: normal; font-size: 10pt;">MDP</td>
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">VIBRANCE_INTEGRAL</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">4963</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">4442</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5483</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5483</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5035</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">-73</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">-1</td>
 </tr>
 <tr class="even">
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 0pt; font-weight: normal; font-size: 10pt;">Tandil</td>
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">SISTIVA_PREMIS</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">4738</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">3201</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">6275</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">6275</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">4376</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">362</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">8</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 0pt; font-weight: normal; font-size: 10pt;">Tandil</td>
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">RIZODERMA_SX + VITAGROW + STZN</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">4457</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">2920</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5995</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5995</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">4376</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">81</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">2</td>
 </tr>
 <tr class="even">
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 0pt; font-weight: normal; font-size: 10pt;">Tandil</td>
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">CHECK</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">4376</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">2839</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5914</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5914</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">4376</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">0</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">0</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 0pt; font-weight: normal; font-size: 10pt;">Tandil</td>
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">VIBRANCE_INTEGRAL</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">4314</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">2777</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5852</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5852</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">4376</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">-62</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">-1</td>
 </tr>
 <tr class="even">
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 0pt; font-weight: normal; font-size: 10pt;">Tandil</td>
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">RIZODERMA_SX</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">3948</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">2410</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5485</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5485</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">4376</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">-429</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">-10</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 0pt; font-weight: normal; font-size: 10pt;">Tandil</td>
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">SISTIVA_PREMIS + ALZ_12051</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">3919</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">2382</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5456</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5456</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">4376</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">-457</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">-10</td>
 </tr>
 <tr class="even">
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 0pt; font-weight: normal; font-size: 10pt;">Tandil</td>
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">RANCONA_TRIO_400</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">3800</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">2263</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5338</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">5338</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">4376</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">-576</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">-13</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt; padding: 0.1pt 6pt 0.1pt 0pt; font-weight: normal; font-size: 10pt;">Tandil</td>
 <td style="text-align: left; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">CURACYT</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">3338</td>
 <td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">1801</td>
-<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">4875</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">4875</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">4376</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt; padding: 0.1pt 6pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">-1038</td>
+<td style="text-align: right; vertical-align: top; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0.4pt 0pt; padding: 0.1pt 0pt 0.1pt 6pt; font-weight: normal; font-size: 10pt;">-24</td>
 </tr>
 </tbody>
 </table>
@@ -1126,9 +1197,13 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="trigo" class="level3" data-number="1.2.2">
 <h3 data-number="1.2.2" class="anchored" data-anchor-id="trigo"><span class="header-section-number">1.2.2</span> Trigo</h3>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<p><img src="cura_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="384"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="cura_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
 </div>
 </div>
 <div class="cell">
@@ -1136,9 +1211,8 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="cura_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
-</section>
-<section id="análisis-intra-sitio-1" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="análisis-intra-sitio-1">Análisis intra-sitio</h3>
+<section id="análisis-intra-sitio-1" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="análisis-intra-sitio-1">Análisis intra-sitio</h4>
 <div class="cell">
 <div class="cell-output-display">
 <table id="tab:unnamed-chunk-22" class="huxtable table table-sm table-striped small" data-quarto-postprocess="true">
@@ -1439,11 +1513,9 @@ ul.task-list li input[type="checkbox"] {
 
 </div>
 </div>
-<blockquote class="blockquote">
-<p>A pesar de detectarse diferencias entre los tratamientos a nivel de ensayo individual se estimaron diferencias de mas de 380 kg/ha, valores que superan ampliamente los costos de las tecnologias evaluadas.</p>
-</blockquote>
 
 
+</section>
 </section>
 </section>
 

@@ -14,7 +14,7 @@ book:
     background: light
     left: "Consultas sobre el análisis de datos y reporte en general: edwardsmolina.juan@inta.gob.ar"
   sidebar:
-    pinned: true
+    pinned: false
     tools:
           - icon: save
             menu:
@@ -37,3 +37,5 @@ format:
       light: cosmo
       dark: superhero
 
+website:
+  reader-mode: true

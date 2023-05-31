@@ -18,7 +18,7 @@ rio::import(file = "data/meta_foliares.csv") %>%
   set_caption("Sitios experimentales")
 ```
 
-```{r, }
+```{r}
 trat_tabs <- dat %>% #distinct(cultivo, prod)
   filter(prod != "Cripton_600 @Z39") %>% 
   filter(prod !="Check") %>% 
@@ -54,9 +54,9 @@ eval <- rio::import("data/eval_foliares.csv") %>%
 
 Mancha en red (_Pyrenophora teres_) fue la enfermedad presente en los sitios de La Dulce y MdP (ausencia en Tandil), en bajos niveles de severidad por lo que se analizó la incidencia de la enfermedad (MR_inc). 
 
-#### Análisis individual intra-sitio {.unnumbered}
 
-```{r}
+```{r, eval=FALSE}
+#### Análisis individual intra-sitio {.unnumbered}
 eval %>% 
   group_by(sitio) %>%
   nest() %>% 
@@ -77,20 +77,17 @@ eval %>%
 #### Análisis global {.unnumbered}
 
 ```{r}
-eval %>% 
+# eval %>% 
   # count(cultivo, trt, prod)
-  group_by() %>%
-  nest() %>% 
-  mutate(
-    model = map(data, ~with(asin_tran, lmer(linkfun(inc)~prod+(1|sitio/bq), 
-                                          data = .x))),
-    emms = map(model, ~ emmeans(., ~ prod, type = "response")),
-    clds = map(emms, ~ cld(., Letters = letters, alpha = .05,
-                           type = "response", reversed = F))) %>% 
-  unnest(clds) %>% 
-  dplyr::select(!c(data, model, emms)) %>%
+  # group_by() %>%
+  # nest() %>%
+  # mutate(
+  #   model = map(data, ~
+sani_mod <- with(asin_tran, lmer(linkfun(inc)~prod+(1|sitio/bq), data = eval))
+sani_emms <- emmeans(sani_mod, ~ prod, type = "response")
+cld(sani_emms, Letters = letters, alpha = .05, type = "response", reversed = F)%>%
   mutate(`%Control`=abs((response/filter(.,prod=="Check")%>% pull(response)-1)*100)) %>% 
-  select(MR_inc=response, limite_inferior=lower.CL, limite_superior=upper.CL, Tukey=.group, `%Control`) %>% 
+  select(prod, MR_inc=response, limite_inferior=lower.CL, limite_superior=upper.CL, Tukey=.group, `%Control`) %>% 
   as_hux() %>% 
   set_font_size(10) %>% 
   theme_article() %>% 
@@ -113,7 +110,7 @@ dat %>%
 ```
 
 
-```{r, fig.height = 6, fig.width = 6, fig.cap="Distribución de rendimientos observados de cebada"}
+```{r, fig.width =4, fig.cap="Distribución de rendimientos observados de cebada"}
 cebada_foliar %>% 
   ggplot()+
   facet_grid(sitio ~ ., scales="free")+ 
@@ -128,7 +125,7 @@ cebada_foliar %>%
 
 > El rendimiento (valor mediano) fue en orden creciente en La Dulce < Tandil < MdP, con menor dispersión en MdP (parcelas mas homogéneas entre si). 
 
-```{r, fig.height = 4, fig.width = 8}
+```{r, fig.width = 6}
 #| fig-cap: Rendimientos observados y su media aritmética
 cebada_foliar %>% 
   ggplot() + 
@@ -163,7 +160,7 @@ cebada_foliar %>%
   left_join(cebada_foliar_rinde_cv) %>% 
   select(-term) %>% 
   as_hux() %>% 
-  set_font_size(10) %>% 
+  set_font_size(9) %>% 
   theme_article() %>% 
   set_tb_padding(.1)%>% 
   set_number_format(1)
@@ -186,12 +183,13 @@ cebada_foliar %>%
   mutate(test_kg_ha = kg_ha[prod == "Check"]) %>% 
   mutate(dif_kg = kg_ha- test_kg_ha,
          `dif_%` = (kg_ha/test_kg_ha - 1) * 100) %>% 
-  select(-std.error, -df, -test_kg_ha) %>% 
+  select(-std.error, -df, -test_kg_ha) %>%
+  # knitr::kable()
   as_hux() %>% 
   set_font_size(10) %>% 
   theme_article() %>% 
   set_tb_padding(.1)%>% 
-  set_number_format(1)
+  set_number_format(0)
 ```
 
 #### Modelo global {.unnumbered}
@@ -217,7 +215,7 @@ m1 %>%
   set_font_size(10) %>% 
   theme_article() %>% 
   set_tb_padding(.1) %>% 
-  set_number_format(1)
+  set_number_format(0)
 ```
 
 
@@ -271,7 +269,7 @@ press_upa <- rio::import("data/press_RA.csv")
 
 Evolución de roya amarilla en sitio MdP (incidencia a nivel de hoja del testigo, baja severidad en Z32: ~ 1%)
 
-```{r fig.width=4}
+```{r fig.width=2, fig.height=3}
 press_upa %>%  
   pivot_longer(-hj, 
                names_to = "feno") %>%
@@ -304,7 +302,7 @@ dat %>%
 ```
 
 
-```{r, fig.height = 4, fig.width = 6}
+```{r fig.width = 6, eval=FALSE}
 trigo_foliar %>% 
   ggplot()+
   aes(x = kg_ha, y = after_stat(count / sum(count))) +
@@ -322,7 +320,7 @@ trigo_foliar %>%
 > Este ensayo presento buena presión de roya amarilla (presente desde Z37 en baja severidad) observado en el testigo ya que en los tratamientos no logró desarrollarse por la aplicación temprana y el repaso en Z39. 
 
 
-```{r, fig.height = 8, fig.width = 8}
+```{r, fig.height=6}
 #| fig-cap: Rendimientos observados y su media aritmética
 
 trigo_foliar %>% 
@@ -369,7 +367,7 @@ trigo_foliar %>%
   set_font_size(10) %>% 
   theme_article() %>% 
   set_tb_padding(.1)%>% 
-  set_number_format(1)
+  set_number_format(0)
 ```
 
 ```{r}
@@ -416,8 +414,8 @@ trigo_foliar_tab %>%
   theme_article() %>% 
   set_tb_padding(.1)%>% 
   set_caption("Rendimientos medios estimados - sitio Tandil") %>% 
-  set_number_format(1)
+  set_number_format(0)
 ```
 
-> En Tandil no se observaron diferencias significativas entre los tratamientos. Vale recordar la misa consideracion que en el analisis de rendimiento de los ensayos de curasemillas: las respuestas medias de varios tratamientos superaron ampliamente los costos de su adopción. 
+> En Tandil no se observaron diferencias significativas entre los tratamientos. Vale recordar la misa consideracion que en el análisis de rendimiento de los ensayos de curasemillas: las respuestas medias de varios tratamientos superaron ampliamente los costos de su adopción. 
 

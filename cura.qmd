@@ -63,7 +63,7 @@ Tandil y MdP tuvieron la misma lista de tratamientos y en ambos casos la siembra
 
 Con el objetivo de tener una variable de desarrollo vegetativo se evalúo el % de cobertura con app canopeo.
 
-```{r fig.width=4, fig.height=4}
+```{r fig.width=6, fig.align='center', eval=FALSE}
 cober_dat %>% 
   ggplot()+
   aes(x = val, y = after_stat(count / sum(count))) +
@@ -216,7 +216,7 @@ No se detectaron diferencias estadísticas en el % de cobertura entre los tratam
 rinde_cura <- rio::import("data/rinde_cura_dat.csv")
 ```
 
-```{r fig.width=4, fig.height=4}
+```{r fig.width=6, fig.align='center'}
 rinde_cura %>% 
   filter(cultivo=="cebada") %>% 
   ggplot()+
@@ -278,10 +278,24 @@ rinde_cura %>%
 
 
 ```{r}
+# rinde_cura %>%
+#   filter(cultivo=="cebada") %>% 
+#   group_by(sitio) %>%
+#   group_modify(~ lmer(kg_ha ~ prod + (1|bq), data = .x) %>%
+#                  emmeans(., ~ prod, type = "response") %>%
+#                  cld(., Letters = letters, alpha = .1,
+#                      type = "response", reversed = T) %>%
+#                  broom::tidy() %>% 
+#                  rename(kg_ha = estimate) %>%
+#                  mutate_if(is.character, as.factor)
+#                ) %>% 
+#   dplyr::select(-std.error, -df, -".group") -> rinde_cura_res  
+
 rinde_cura %>%
   filter(cultivo=="cebada") %>% 
   group_by(sitio) %>%
-  group_modify(~ lmer(kg_ha ~ prod + (1|bq), data = .x) %>%
+  group_modify(~ 
+                 lmer(kg_ha ~ prod + (1|bq), data = .x) %>%
                  emmeans(., ~ prod, type = "response") %>%
                  cld(., Letters = letters, alpha = .1,
                      type = "response", reversed = T) %>%
@@ -289,9 +303,15 @@ rinde_cura %>%
                  rename(kg_ha = estimate) %>%
                  mutate_if(is.character, as.factor)
                ) %>% 
-  dplyr::select(-std.error, -df, -".group") -> rinde_cura_res  
+  dplyr::select(-std.error, -df, -".group") -> rinde_cura_ceb_res
 
-rinde_cura_res %>%
+rinde_cura_ceb_res %>% 
+  group_by(sitio) %>% 
+  mutate(test_kg_ha = ifelse(sitio!="La Dulce", 
+                             kg_ha[prod == "CHECK"], 
+                             NA)) %>% 
+  mutate(dif_kg = kg_ha- test_kg_ha,
+         `dif_%` = (kg_ha/test_kg_ha - 1) * 100) %>%   
   rename(Trat=prod, Sitio=sitio) %>% 
   as_hux() %>% 
   set_font_size(10) %>% 
@@ -305,7 +325,7 @@ rinde_cura_res %>%
 
 ### Trigo
 
-```{r fig.width=4, fig.height=4}
+```{r fig.width=6, fig.align='center'}
 rinde_cura %>% 
   filter(cultivo=="trigo") %>% 
   ggplot()+
@@ -339,7 +359,7 @@ last_plot() %>%
   ggsave(filename = "plots/rinde_semilla_trigo_.jpg", w=8, h=6, units="cm", scale=3)
 ```
 
-### Análisis intra-sitio {.unnumbered}
+#### Análisis intra-sitio {.unnumbered}
 
 ```{r}
 rinde_cura %>%
@@ -391,7 +411,3 @@ rinde_cura_trigo_res %>%
   set_tb_padding(.1) %>% 
   set_number_format(0)
 ```
-
-> A pesar de detectarse diferencias entre los tratamientos a nivel de ensayo individual se estimaron diferencias de mas de 380 kg/ha, valores que superan ampliamente los costos de las tecnologias evaluadas. 
-
-
